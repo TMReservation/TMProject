@@ -7,6 +7,8 @@ package com.tmchecking;
 
 //import com.team.bean.FirstLocal;
 import com.team.bean.FirstLocal;
+import com.tm.entities.Test;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -22,6 +24,7 @@ public class UserBean {
     //First first;
     @EJB
     FirstLocal firstLocal;
+    List<Test> tests;
     
     public String redirectHomePage(){
         System.out.println(">>>>>>>>>");

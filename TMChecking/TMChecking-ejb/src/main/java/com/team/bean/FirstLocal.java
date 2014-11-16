@@ -5,6 +5,8 @@
  */
 package com.team.bean;
 
+import com.tm.entities.Test;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,6 +15,6 @@ import javax.ejb.Local;
  */
 @Local
 public interface FirstLocal {
-    public void getAllProjectTest();
+    public List<Test> getAllProjectTest();
     
 }

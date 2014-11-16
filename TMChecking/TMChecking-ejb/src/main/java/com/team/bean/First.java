@@ -30,17 +30,17 @@ public class First implements FirstLocal {
     }
 
     @Override
-    public void getAllProjectTest() {
+    public List<Test> getAllProjectTest() {
         try {
             List<Test> test = new ArrayList<>();
             System.out.println(">>IN EJB");
             Query query = em.createNamedQuery("Test.findAll");
             test = query.getResultList();
             System.out.println("TEST IS " + test.size());
-            //  return project;
+              return test;
         } catch (Exception e) {
             e.printStackTrace();
-            //return null;
+            return null;
         }
     }
 
