@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-    <artifactId>TMChecking</artifactId>
-    <groupId>com.mycompany</groupId>
-    <version>1.0-SNAPSHOT</version>
-  </parent>
+        <artifactId>TMChecking</artifactId>
+        <groupId>com.mycompany</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
     <groupId>com.mycompany</groupId>
     <artifactId>TMChecking-ejb</artifactId>
@@ -39,6 +39,15 @@
             <scope>provided</scope>
         </dependency>
         <!--Manual Dependancy-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>4.2.0.Final</version>
+        </dependency>
+
+        
+        
+        <!--Test-->
        
         <dependency>
             <groupId>org.hibernate.java-persistence</groupId>
@@ -48,7 +57,8 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>3.5.0-Beta-2</version>
+            <version>3.6.0.Final</version>
+            <!--<version>3.5.0-Beta-2</version>-->
             <exclusions>
                 <exclusion>
                     <artifactId>hsqldb</artifactId>
