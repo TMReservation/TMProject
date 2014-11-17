@@ -25,7 +25,11 @@ public class UserBean {
     @EJB
     FirstLocal firstLocal;
     List<Test> tests;
-    
+   
+    public String settingPage(){
+        System.out.println("Setting here");
+        return "setting";
+    }
     public String redirectHomePage(){
         System.out.println(">>>>>>>>>");
         firstLocal.getAllProjectTest();
