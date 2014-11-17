@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich" template="/template/layout.xhtml">
+
+    <ui:define name="content">
+        <h2>Setting Page</h2>       
+        <h:outputStylesheet>
+        a.no-decor>img {
+        border: none;
+        }
+    </h:outputStylesheet>
+    <!--<a4j:status onstart="#{rich:component('statPane')}.show()" onstop="#{rich:component('statPane')}.hide()" />-->
+        <rich:dataTable value="#{teacherBean.teachers}" var="teacher" iterationStatusVar="it" id="table" rows="15">
+            <rich:column>
+                <f:facet name="header">#</f:facet>
+                #{it.index}
+            </rich:column>
+            <rich:column>
+                <f:facet name="header">Vendor</f:facet>
+                <h:outputText value="#{teacher.firstName}" />
+            </rich:column>
+        </rich:dataTable>
+                
+    </ui:define>    
+</ui:composition>
