@@ -23,13 +23,32 @@ public class TeacherBean {
     @EJB
     TeacherBeanLocal teacherBeanLocal;
     List<Teacher> teachers=new ArrayList<>();
+    Teacher teacher=new Teacher();
+    
+   
     
     public String showTeacherList(){
         System.out.println("IN TEACHER BEAN");
         teachers=teacherBeanLocal.getTeacherList();
-        System.out.println("Teacher size is "+teachers.size());
+        System.out.println("Teacher size is ");
         return "setting";
     }
+    public String addTeacherInformation(){
+        System.out.println("Add teacher here");
+        System.out.println("Teacher name "+teacher.getFirstName());
+        //firstLocal.addTeacherInfo(teacher);
+        System.out.println("END");
+        return "addTeacher";
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+    
 
     public List<Teacher> getTeachers() {
         return teachers;

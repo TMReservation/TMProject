@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich" template="/template/layout.xhtml">    
+    <ui:define name="content">
+        <h2>Add Teacher</h2>
+        <rich:panel>
+            <f:facet name="header">
+                <h:outputText value="Teacher Info Entry"></h:outputText>
+            </f:facet>
+            <h:panelGrid columns="2">
+                <h:outputText value="FirstName:" />
+                <h:inputText label="firstName" id="name" required="true" value="#{teacherBean.teacher.firstName}"/>
+
+                <h:outputText value="LastName:" />
+                <h:inputText label="lastName" id="lastname" required="true" value="#{teacherBean.teacher.lastName}"/>
+                <!--<h:outputText value="email" />
+                <h:inputText label="email" id="email"  value="{teacherBean.teacher.email}"/>
+                <h:outputText value="contactNumber" />
+                <h:inputText label="contactNumber" id="contact"  value="{teacherBean.teacher.contactNumber}"/>
+                <h:outputText value="contact" />
+                <h:inputText label="userName" id="username" required="true" value="{teacherBean.teacher.userName}"/>
+                <h:outputText value="password" />
+                <h:inputSecret label="password" id="password" required="true" value="{teacherBean.teacher.password}"/>-->
+
+                <h:outputText value="" />
+                <h:commandButton value="ADD" action="#{teacherBean.addTeacherInformation}"/>
+
+                
+
+
+            </h:panelGrid>
+             <rich:dataTable value="#{teacherBean.teachers}" var="teacher" iterationStatusVar="it" id="table" rows="15">
+                <rich:column>
+                <f:facet name="header">#</f:facet>
+                #{it.index}
+            </rich:column>
+            <rich:column>
+                <f:facet name="header">First Name</f:facet>
+                <h:outputText value="#{teacher.firstName}" />
+            </rich:column>
+                 <!--<rich:column>
+                <f:facet name="header">Last Name</f:facet>
+                <h:outputText value="{teacher.lastName}" />
+            </rich:column>
+                 <rich:column>
+                <f:facet name="header">email</f:facet>
+                <h:outputText value="{teacher.email}" />
+            </rich:column>
+                 <rich:column>
+                <f:facet name="header">contact Number</f:facet>
+                <h:outputText value="{teacher.contactNumber}" />
+            </rich:column>-->
+        </rich:dataTable>
+            
+        </rich:panel>
+
+    </ui:define>   
+</ui:composition>

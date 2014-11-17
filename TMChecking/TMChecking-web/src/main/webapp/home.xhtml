@@ -5,12 +5,11 @@
     <ui:define name="content">
         <h2>This is home      content</h2> 
         <h:commandButton action="#{userBean.redirectHomePage()}" value="TEST"/>
-        <h:commandLink action="#{userBean.redirectHomePage()}">
+        <h:commandLink action="#{teacherBean.addTeacherInformation()}">
              <h:graphicImage  value="resources/images/teacher.png" alt="Teacher"  width="100" height="75" />
         </h:commandLink>
-        <h:graphicImage  value="resources/images/teacher.png" alt="Teacher"  width="100" height="75" />
         <h:graphicImage  value="resources/images/student.png" alt="Student"  width="100" height="75" />
-         <h:commandLink action="#{teacherBean.showTeacherList()}">
+        <h:commandLink action="#{teacherBean.showTeacherList()}">
              <h:graphicImage  value="resources/images/setting.png" alt="Setting"  width="100" height="75" />
          </h:commandLink>
     </ui:define>    
