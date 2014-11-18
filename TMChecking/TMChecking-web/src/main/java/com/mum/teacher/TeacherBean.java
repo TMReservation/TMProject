@@ -23,6 +23,9 @@ public class TeacherBean {
     @EJB
     TeacherBeanLocal teacherBeanLocal;
     List<Teacher> teachers=new ArrayList<>();
+    Teacher teacher=new Teacher();
+    
+   
     
     public String showTeacherList(){
         System.out.println("IN TEACHER BEAN");
