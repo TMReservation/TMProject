@@ -28,7 +28,7 @@ public class TeacherBean {
    
     
     public String showTeacherList(){
-        System.out.println("IN TEACHER BEAN");
+        System.out.println("IN TEACHER BEAN>>>");
         teachers=teacherBeanLocal.getTeacherList();
 //        System.out.println("Teacher size is "+teachers.size());
         return "setting";

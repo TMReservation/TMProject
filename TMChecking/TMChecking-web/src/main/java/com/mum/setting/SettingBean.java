@@ -26,7 +26,7 @@ public class SettingBean {
     private int currentSettingIndex;
     private Setting setting;
     
-    public String showUserList(){
+    public String showSettingList(){
         System.out.println("IN SETTING BEAN");
         settings=settingBeanLocal.getSettingList();
         //settings=settingLocal.getSettingRole();
@@ -55,7 +55,7 @@ public class SettingBean {
     }
 
     public Setting getSetting() {
-        System.out.println("HIT SETTING BEAN "+setting.getId());
+       // System.out.println("HIT SETTING BEAN "+setting.getId());
         return setting;
     }
 
