@@ -5,20 +5,63 @@
     <ui:define name="content">
         <h2>Setting Page</h2>       
         <h:outputStylesheet>
-        a.no-decor>img {
-        border: none;
-        }
-    </h:outputStylesheet>
-        <rich:dataTable value="#{teacherBean.teachers}" var="teacher" iterationStatusVar="it" id="table" rows="15">
+            a.no-decor>img {
+            border: none;
+            }
+        </h:outputStylesheet>
+
+
+
+        <a4j:status onstart="#{rich:component('statPane')}.show()" onstop="#{rich:component('statPane')}.hide()" />
+        <rich:dataTable value="#{settingBean.settings}" var="setting" iterationStatusVar="it" id="table" rows="15">
             <rich:column>
-                <f:facet name="header">#</f:facet>
-                #{it.index}
+                <f:facet name="header">S.No</f:facet>
+                    #{it.index+1}
             </rich:column>
             <rich:column>
-                <f:facet name="header">Vendor</f:facet>
-                <h:outputText value="#{teacher.firstName}" />
+                <f:facet name="header">Role</f:facet>
+                <h:outputText value="#{setting.role}" />
+            </rich:column>
+            <rich:column>
+                <f:facet name="header">Action</f:facet>
+                <a4j:commandLink styleClass="no-decor" render="editGrid" execute="@this"
+                                 oncomplete="#{rich:component('editPane')}.show()">
+                    <h:graphicImage value="resources/images/edit.png" alt="edit" width="20" height="18"/>
+                    <a4j:param value="#{it.index}" assignTo="#{settingBean.currentSettingIndex}" />
+                    <f:setPropertyActionListener target="#{settingBean.setting}" value="#{setting}" />
+                </a4j:commandLink>
             </rich:column>
         </rich:dataTable>
-                
+
+        <rich:popupPanel header="Edit Panel" id="editPane" domElementAttachment="parent" width="400" height="170">
+            <h:panelGrid columns="3" id="editGrid">
+                <h:outputText value="Role" />
+
+                <rich:select value="select">
+                    <f:selectItem itemValue="user" itemLabel="User" />
+                    <f:selectItem itemValue="admin" itemLabel="Admin" />
+                </rich:select>
+
+                <rich:message id="priceMsg" for="price" />
+                <h:outputText value="Mileage" />
+                <h:inputText value="#{settingBean.setting.teacherId}" id="mage" converterMessage="Should be a valid mileage"
+                             validatorMessage="Should be a valid mileage" label="Mileage field">
+                    <f:validateDoubleRange minimum="0.00" maximum="99999999.00" />
+                </h:inputText>
+                <rich:message id="madeMsg" for="mage" />
+                <h:outputText value="VIN" />
+                <h:inputText value="#{settingBean.setting.teacherId}" id="vin" required="true"
+                             validatorMessage="Not a valid 17-digit VIN" converterMessage="Not a valid 17-digit VIN"
+                             requiredMessage="VIN is required">
+                    <f:validateLength minimum="17" maximum="17" />
+                </h:inputText>
+                <rich:message id="vinMsg" for="vin" />
+            </h:panelGrid>
+            <a4j:commandButton value="Update" action="#{teacherBean.store}" render="table" execute="editPane"
+                               oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editPane')}.hide();}" />
+            <a4j:commandButton value="Cancel" onclick="#{rich:component('editPane')}.hide();
+                    return false;" />
+        </rich:popupPanel>
+
     </ui:define>    
 </ui:composition>
