@@ -33,6 +33,17 @@ public class TeacherBean {
 //        System.out.println("Teacher size is "+teachers.size());
         return "setting";
     }
+    public String addTeacherInformation(){
+        System.out.println("INSERT TEACHER");
+        teacherBeanLocal.addTeacherInfo(teacher);
+        return "";
+    }
+    public String addTeacher()
+    { 
+        System.out.println("adddddddd");    
+        teachers=teacherBeanLocal.getTeacherList();
+        return "addTeacher";
+    }
 
     public List<Teacher> getTeachers() {
         return teachers;
@@ -41,5 +52,14 @@ public class TeacherBean {
     public void setTeachers(List<Teacher> teachers) {
         this.teachers = teachers;
     }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+    
     
 }
