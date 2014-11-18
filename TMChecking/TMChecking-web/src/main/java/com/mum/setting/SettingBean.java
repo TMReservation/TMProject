@@ -5,8 +5,8 @@
  */
 package com.mum.setting;
 
-import com.team.setting.SettingBeanLocal;
 import com.tm.entities.Setting;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -19,16 +19,16 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean(name = "settingBean")
 @SessionScoped
-public class SettingBean {
-    @EJB
-    private SettingBeanLocal settingBeanLocal;
+public class SettingBean implements Serializable{
+   // @EJB
+   // private SettingBeanLocal settingBeanLocal;
     List<Setting> settings=new ArrayList<>();
     private int currentSettingIndex;
     private Setting setting;
     
     public String showSettingList(){
         System.out.println("IN SETTING BEAN");
-        settings=settingBeanLocal.getSettingList();
+        //settings=settingBeanLocal.getSettingList();
         //settings=settingLocal.getSettingRole();
        // System.out.println("Teacher size is "+settings.size());
         return "setting";

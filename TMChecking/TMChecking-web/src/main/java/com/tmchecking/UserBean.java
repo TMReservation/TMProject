@@ -6,10 +6,7 @@
 package com.tmchecking;
 
 //import com.team.bean.FirstLocal;
-import com.team.bean.FirstLocal;
-import com.tm.entities.Test;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -22,9 +19,9 @@ import javax.faces.bean.SessionScoped;
 public class UserBean {
    // @EJB
     //First first;
-    @EJB
-    FirstLocal firstLocal;
-    List<Test> tests;
+    //@EJB
+    //FirstLocal firstLocal;
+    //List<Test> tests;
    
     public String settingPage(){
         System.out.println("Setting here");
@@ -32,7 +29,7 @@ public class UserBean {
     }
     public String redirectHomePage(){
         System.out.println(">>>>>>>>>");
-        firstLocal.getAllProjectTest();
+        //firstLocal.getAllProjectTest();
         System.out.println("REDIRECT HERE");
         return "index";
     }

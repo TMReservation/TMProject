@@ -60,18 +60,19 @@
 
 
             </h:panelGrid>
-             <rich:dataTable value="#{teacherBean.teachers}" var="teacher" iterationStatusVar="it" id="table" rows="15">
+            #{teacherBean.teachers.size()}
+             <rich:dataTable value="#{teacherBean.teachers}" var="teach" iterationStatusVar="it" id="table" rows="15">
                 <rich:column>
                 <f:facet name="header">S. No.</f:facet>
                 #{it.index}
             </rich:column>
             <rich:column>
                 <f:facet name="header">First Name</f:facet>
-                <h:outputText value="#{teacher.firstName}" />
+                <h:outputText value="#{teach.firstName}" />
             </rich:column>
                  <rich:column>
                 <f:facet name="header">Last Name</f:facet>
-                <h:outputText value="#{teacher.lastName}" />
+                <h:outputText value="#{teach.lastName}" />
             </rich:column>
                  <!--<rich:column>
                 <f:facet name="header">email</f:facet>

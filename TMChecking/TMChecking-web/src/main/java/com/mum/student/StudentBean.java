@@ -6,7 +6,6 @@
 package com.mum.student;
 
 import com.tm.entities.Student;
-import com.tm.student.StudentBeanLocal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -24,19 +23,13 @@ public class StudentBean {
     private Student student=new Student();
     //private ArrayList<Student> students=new ArrayList();
     
-     @EJB
-     StudentBeanLocal studentBeanLocal;
+    // @EJB
+    
      List<Student> students=new ArrayList<>();
     //TeacherBeanLocal teacherBeanLocal;
    // List<Teacher> teachers=new ArrayList<>();
 
-    public StudentBeanLocal getStudentBeanLocal() {
-        return studentBeanLocal;
-    }
-
-    public void setStudentBeanLocal(StudentBeanLocal studentBeanLocal) {
-        this.studentBeanLocal = studentBeanLocal;
-    }
+   
 
     public List<Student> getStudents() {
         return students;

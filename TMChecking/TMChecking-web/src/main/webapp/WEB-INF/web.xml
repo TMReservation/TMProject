@@ -28,7 +28,7 @@
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
         
-    <filter> 
+<!--    <filter> 
         <display-name>RichFaces Filter</display-name> 
         <filter-name>richfaces</filter-name> 
         <filter-class>org.ajax4jsf.Filter</filter-class>
@@ -46,7 +46,7 @@
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
-    </filter-mapping>
+    </filter-mapping>-->
     
 <!--    <servlet-mapping>
         <servlet-name>DynamicImageServlet</servlet-name>

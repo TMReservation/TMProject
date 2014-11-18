@@ -5,8 +5,8 @@
  */
 package com.mum.teacher;
 
+import com.mum.setting.TeacherDB;
 import com.tm.entities.Teacher;
-import com.tm.teacher.TeacherBeanLocal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -20,28 +20,28 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name = "teacherBean")
 @SessionScoped
 public class TeacherBean {
-    @EJB
-    TeacherBeanLocal teacherBeanLocal;
     List<Teacher> teachers=new ArrayList<>();
     Teacher teacher=new Teacher();
-    
+    TeacherDB teacherDB=new TeacherDB();
    
     
     public String showTeacherList(){
         System.out.println("IN TEACHER BEAN>>>");
-        teachers=teacherBeanLocal.getTeacherList();
-//        System.out.println("Teacher size is "+teachers.size());
         return "setting";
     }
-    public String addTeacherInformation(){
+    public void addTeacherInformation(){
         System.out.println("INSERT TEACHER");
-        teacherBeanLocal.addTeacherInfo(teacher);
-        return "";
+        TeacherDB teacherDB=new TeacherDB();
+        teacherDB.insertTeacher(teacher);      
     }
     public String addTeacher()
-    { 
-        System.out.println("adddddddd");    
-        teachers=teacherBeanLocal.getTeacherList();
+    {         
+        teachers=new ArrayList<>();
+        teachers=teacherDB.getTeacherList();
+        for(Teacher t:teachers){
+            System.out.println("T is "+t.getFirstName());
+        }
+        System.out.println("SIZE IS "+teachers.size());
         return "addTeacher";
     }
 
