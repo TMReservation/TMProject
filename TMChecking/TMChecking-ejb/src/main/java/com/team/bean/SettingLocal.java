@@ -5,6 +5,7 @@
  */
 package com.team.bean;
 
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,5 @@ import javax.ejb.Local;
  */
 @Local
 public interface SettingLocal {
-    
+    public List<Setting> getStudentList();
 }

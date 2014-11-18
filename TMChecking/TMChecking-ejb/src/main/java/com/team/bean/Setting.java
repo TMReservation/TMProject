@@ -5,7 +5,12 @@
  */
 package com.team.bean;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -14,6 +19,24 @@ import javax.ejb.Stateless;
 @Stateless
 public class Setting implements SettingLocal {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+     
+    @PersistenceContext(unitName = "tmReservation")
+    private EntityManager em;
+     
+    @Override
+    public List<Setting> getStudentList() {
+        try {
+            List<Setting> settings = new ArrayList<>();
+            System.out.println(">>IN EJB::");
+            Query query = em.createNamedQuery("Teacher.findAll");
+            System.out.println("IN TEACHER>>");
+            settings = query.getResultList();
+            System.out.println("TEST IS " + settings.size());
+              return settings;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+   
 }
