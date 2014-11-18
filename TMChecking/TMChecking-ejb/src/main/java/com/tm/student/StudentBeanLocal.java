@@ -5,6 +5,7 @@
  */
 package com.tm.student;
 
+import com.tm.entities.Setting;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,5 @@ import javax.ejb.Local;
  */
 @Local
 public interface StudentBeanLocal {
-    
+    // public List<Setting> getSettingList();
 }
