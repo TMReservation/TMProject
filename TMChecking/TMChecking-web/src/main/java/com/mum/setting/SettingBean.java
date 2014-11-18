@@ -5,8 +5,8 @@
  */
 package com.mum.setting;
 
+import com.team.setting.SettingBeanLocal;
 import com.tm.entities.Setting;
-import com.tm.setting.SettingRoleLocal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -21,15 +21,15 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class SettingBean {
     @EJB
-    private SettingRoleLocal settingRoleLocal;
+    private SettingBeanLocal settingBeanLocal;
     List<Setting> settings=new ArrayList<>();
     private int currentSettingIndex;
     private Setting setting;
     
     public String showUserList(){
         System.out.println("IN SETTING BEAN");
-        
-        settings=settingRoleLocal.getSettingRole();
+        settings=settingBeanLocal.getSettingList();
+        //settings=settingLocal.getSettingRole();
        // System.out.println("Teacher size is "+settings.size());
         return "setting";
     }
