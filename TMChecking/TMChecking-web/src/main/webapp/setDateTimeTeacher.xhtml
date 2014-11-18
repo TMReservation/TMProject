@@ -16,12 +16,15 @@
                     <h:commandLink value="view Request" action="#{teacherBean.viewRequest}"/><br/>
                 <h:commandLink value="Cancel Request" action="#{teacherBean.cancelRequest}"/>
             </f:facet>
-           <h:panelGrid columns="2">
-                <h:outputText value="Date " />
-                <rich:inplaceInput defaultLabel="click to enter your name"  value="#{teacherBean.teacher.firstName}"/>
-            <h:outputText value="Time " />
-                <rich:inplaceInput defaultLabel="click to enter your name"  value="#{teacherBean.teacher.firstName}"/>
-                </h:panelGrid>
+           
+            
+           <!--<rich:inputNumberSpinner value="#{myBean.hours}" minValue="0" maxValue="23" />
+           <rich:inputNumberSpinner value="#{myBean.minutes}" minValue="0" maxValue="59" />-->
+
+
+
+           <rich:calendar id="date" value="#{bean.dateTest}" >
+           </rich:calendar>
            <h:commandButton value="Submit" action="teacherBean.saveDateTime"/>
         </rich:panel>
     </ui:define>   
