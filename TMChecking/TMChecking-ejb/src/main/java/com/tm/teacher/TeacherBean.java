@@ -38,6 +38,23 @@ public class TeacherBean implements TeacherBeanLocal {
         }
     }
 
+    @Override
+    public boolean addTeacherInfo(Teacher teacher) {
+        try {
+            System.out.println("IN Teacher ejb");
+            Teacher t=new Teacher();
+            t.setFirstName(teacher.getFirstName());
+            t.setLastName(teacher.getLastName());
+            System.out.println("Before persist");
+            em.persist(t);
+            System.out.println("Finish perisit");
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+
    
 
 }

@@ -16,4 +16,5 @@ import javax.ejb.Local;
 @Local
 public interface TeacherBeanLocal {
     public List<Teacher> getTeacherList();
+    public boolean addTeacherInfo(Teacher teacher);
 }
