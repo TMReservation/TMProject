@@ -29,7 +29,7 @@ public class SettingBean implements SettingBeanLocal {
         try {
             List<Setting> settings = new ArrayList<>();
             System.out.println(">>IN SETTING::");
-            Query query = em.createNamedQuery("Teacher.findAll");
+            Query query = em.createNamedQuery("Setting.findAll");
             System.out.println("IN TEACHER>>");
             settings = query.getResultList();
             System.out.println("TEST IS " + settings.size());
