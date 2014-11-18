@@ -14,5 +14,5 @@ import javax.ejb.Local;
  */
 @Local
 public interface SettingLocal {
-    public List<Setting> getStudentList();
+    public List<Setting> getSettingRole();
 }

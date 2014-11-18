@@ -24,7 +24,7 @@ public class Setting implements SettingLocal {
     private EntityManager em;
      
     @Override
-    public List<Setting> getStudentList() {
+    public List<Setting> getSettingRole() {
         try {
             List<Setting> settings = new ArrayList<>();
             System.out.println(">>IN EJB::");
