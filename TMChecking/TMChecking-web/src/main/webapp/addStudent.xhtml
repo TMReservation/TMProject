@@ -1,0 +1,125 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich" template="/template/layout.xhtml">
+    
+    <ui:define name="content">
+        <h2>This is home page content</h2>
+         
+    <rich:panel>
+        <f:facet name="header">
+            <h:outputText value="Validation Form" />
+        </f:facet>
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputText value="FirstName:" />
+                <h:inputText label="First Name" id="firstname" validatorMessage="Invalide Name" required="true" value="#{studentBean.student.firstName}">
+                    <f:validateLength minimum="2" />
+                </h:inputText>
+                <rich:message for="firstname" ajaxRendered="true" />
+                
+                <h:outputText value="Middle Name:" />
+                <h:inputText label="Middle Name" id="middlename"  value="#{studentBean.student.middleName}">
+                    <!--<f:validateLength minimum="3" />-->
+                </h:inputText>
+                <rich:message for="middlename" ajaxRendered="true" />
+                <h:outputText value="LastName:" />
+                
+                <h:inputText label="Last Name" id="lastname" validatorMessage="Invalid Last Name" required="true" value="#{studentBean.student.lastName}">
+                    <f:validateLength minimum="2" />
+                </h:inputText>
+                <rich:message for="lastname" ajaxRendered="true" />
+                
+                <h:outputText value="Student Id:" />
+                <h:inputText label="Id" id="id" required="true" validatorMessage="Id must be 6 digit number" value="#{studentBean.student.id}">
+                <f:validateLength minimum="6" maximum="6" />
+                </h:inputText>
+                <rich:message for="id" ajaxRendered="true" />
+                
+                <h:outputText value="Contact No:" />
+                <h:inputText label="Id" id="contactno" validatorMessage="Invalid Contact" required="true" value="">
+                 <f:validateLength minimum="10" maximum="10" />
+                </h:inputText>
+                <rich:message for="middlename" ajaxRendered="true" />
+                
+                <h:outputText value="email:"/>
+                <h:inputText label="Email" id="email" validatorMessage="Invalid Email" required="true" value="">
+                <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                </h:inputText>
+                <rich:message for="email" ajaxRendered="true" />
+                                              
+                <h:outputText value="User Name:"/>
+                <h:inputText label="username" id="username"  required="true" value="">
+                <f:validateLength minimum="4" maximum="20" />   
+                </h:inputText>
+                <rich:message for="username" ajaxRendered="true" />
+                
+                 <h:outputText value="Password:"/>
+                 <h:inputSecret label="password" id="password" validatorMessage="Invalid Password (Atleast four characters)" required="true" value="">
+                 <f:validateLength minimum="4" maximum="20" />
+                </h:inputSecret>
+                <rich:message for="password" ajaxRendered="true" />
+                 
+        <rich:panel style="width:220px;">
+            <f:facet name="header">
+                <h:outputText value="Select Batch"></h:outputText>
+            </f:facet>
+            <rich:select>
+                <f:selectItem itemValue="0" itemLabel="Feb 2014" />
+                <f:selectItem itemValue="1" itemLabel="June 2014" />
+                <f:selectItem itemValue="2" itemLabel="Aug 2014" />
+                <f:selectItem itemValue="3" itemLabel="Oct 2014" />
+                <f:selectItem itemValue="4" itemLabel="Feb 2015" />
+            </rich:select>
+        </rich:panel>
+                 
+        <rich:panel style="width:220px;">
+            <f:facet name="header">
+                <h:outputText value="Select Program"></h:outputText>
+            </f:facet>
+            <rich:select>
+                <f:selectItem itemValue="0" itemLabel="Compro Master" />
+                <f:selectItem itemValue="1" itemLabel="Compro Bachelor" />
+                <f:selectItem itemValue="2" itemLabel="Accointing Master" />
+                <f:selectItem itemValue="3" itemLabel="xyz..." />
+                <f:selectItem itemValue="4" itemLabel="abc...." />
+            </rich:select>
+        </rich:panel>                
+      </h:panelGrid>
+            <h:commandButton value="Add Student" action="#{studentBean.addStudent}"/><br/><br/>
+            
+           
+            <rich:dataTable value="#{studentBean.students}" var="student" iterationStatusVar="it" id="table" rows="15">
+            <rich:column>
+                <f:facet name="header">SN</f:facet>
+                #{it.index}
+            </rich:column>
+            <rich:column>
+                <f:facet name="header">Student Id</f:facet>
+                <h:outputText value="#{student.id}" />
+            </rich:column>
+            <rich:column>
+                <f:facet name="header">First Name</f:facet>
+                <h:outputText value="#{student.firstName}" />
+            </rich:column>
+            <rich:column>
+                <f:facet name="header">Middle Name</f:facet>
+                <h:outputText value="#{student.middleName}" />
+            </rich:column>
+            <rich:column>
+                <f:facet name="header">Last Name</f:facet>
+                <h:outputText value="#{student.lastName}" />
+            </rich:column>
+                
+            <rich:column>
+                <f:facet name="header">Email</f:facet>
+                <h:outputText value="#{student.email}" />
+            </rich:column>
+                
+        </rich:dataTable>
+            
+            
+        </h:form>
+    </rich:panel>
+        
+    </ui:define>   
+</ui:composition>
