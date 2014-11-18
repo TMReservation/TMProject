@@ -55,7 +55,7 @@ public class StudentBean {
         System.out.println("ID >>>>>"+ student.getId());
         System.out.println("Email >>>>"+student.getEmail());
         
-        students=studentBeanLocal.getStudentList();
+        //students=studentBeanLocal.
         
         return "addStudent";
     }
