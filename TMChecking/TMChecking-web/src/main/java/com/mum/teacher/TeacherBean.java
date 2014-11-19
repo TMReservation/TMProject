@@ -37,11 +37,8 @@ public class TeacherBean {
     public String addTeacher()
     {         
         teachers=new ArrayList<>();
-        teachers=teacherDB.getTeacherList();
-        for(Teacher t:teachers){
-            System.out.println("T is "+t.getFirstName());
-        }
-        System.out.println("SIZE IS "+teachers.size());
+        
+        teachers=teacherDB.getTeacherList();       
         return "addTeacher";
     }
 
