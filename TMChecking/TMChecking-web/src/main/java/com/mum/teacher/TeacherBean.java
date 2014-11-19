@@ -44,7 +44,7 @@ public class TeacherBean {
         teacher.setEmail(null);
         teacher.setUserName(null);
         teacher.setPassword(null);
-      //  teacher.setContactNumber(Integer.parseInt(""));
+        teacher.setContactNumber(Integer.parseInt(""));
         teacher.setId(null);
     }
     
