@@ -65,6 +65,7 @@ public class TeacherBean {
         teacher.setUserName(null);
         teacher.setPassword(null);
     //    teacher.setContactNumber(Integer.parseInt(""));
+       
         teacher.setId(null);
     }
     
@@ -78,6 +79,7 @@ public class TeacherBean {
             System.out.println("T is "+t.getFirstName());
         }
         System.out.println("SIZE IS "+teachers.size());
+        msg="";
         return "addTeacher";
     }
 
