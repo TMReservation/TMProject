@@ -59,9 +59,9 @@ public class TeacherDB {
             System.out.println("RS >>" + rs);
             List<Teacher> teachers =new ArrayList<>();
             while (rs.next()) {
-                String lastName = rs.getString("first_name");
-                teachers.add(new Teacher(rs));
-                System.out.println(lastName + "\n");
+                Teacher teacher=new Teacher();                
+                teacher.setFirstName(rs.getString("first_name"));
+                teachers.add(teacher);
             }
             
             return teachers;
