@@ -42,7 +42,7 @@ public class TeacherBean {
     }
     public String checkUpdateSetting(){
         System.out.println("Inside update "+teacher.getId());
-        
+
         return "";
     }
     
@@ -64,33 +64,28 @@ public class TeacherBean {
     public void setMsg(String msg) {
         this.msg = msg;
     }
-    
-   
-    
-    public String showTeacherList(){
+
+    public String showTeacherList() {
         System.out.println("IN TEACHER BEAN>>>");
         return "setting";
     }
-    public void addTeacherInformation(){
+
+    public void addTeacherInformation() {
         System.out.println("INSERT TEACHER");
-        TeacherDB teacherDB=new TeacherDB();
-       boolean checkSubmit= teacherDB.insertTeacher(teacher);
-       if(checkSubmit)
-       {
-           msg="Data saved successfully";
-           
-           
-       }
-       else
-       {
-           msg="This entry has some error";
-       }
-       System.out.println(">>>>>>>>>>>>>>>");
-       setTeacherInformation();
-        
+        TeacherDB teacherDB = new TeacherDB();
+        boolean checkSubmit = teacherDB.insertTeacher(teacher);
+        if (checkSubmit) {
+            msg = "Data saved successfully";
+
+        } else {
+            msg = "This entry has some error";
+        }
+        System.out.println(">>>>>>>>>>>>>>>");
+        setTeacherInformation();
+
     }
-    public void setTeacherInformation()
-    {
+
+    public void setTeacherInformation() {
         teacher.setFirstName("");
         teacher.setMiddleName(null);
         teacher.setLastName(null);
