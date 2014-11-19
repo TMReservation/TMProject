@@ -55,11 +55,8 @@
 
                 <rich:message id="priceMsg" for="price" />
                 <h:outputText value="TeacheName:" />
-                <h:inputText value="#{settingBean.setting.tempFullName}" id="mage" converterMessage="Should be a valid mileage"
-                             validatorMessage="Should be a valid mileage" label="Mileage field">
-                    <f:validateDoubleRange minimum="0.00" maximum="99999999.00" />
+                <h:inputText value="#{settingBean.setting.tempFullName}" id="mage" >
                 </h:inputText>
-                <rich:message id="madeMsg" for="mage" />
 
             </h:panelGrid>
             <a4j:commandButton value="Update" action="#{settingBean.checkUpdateSetting()}" render="table" execute="editPane"
