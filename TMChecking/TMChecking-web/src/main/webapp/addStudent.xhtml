@@ -1,7 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j"
                 xmlns:rich="http://richfaces.org/rich" template="/template/layout.xhtml">
-    
+
     <ui:define name="content">
         <h2 align="center">Student Registration</h2>
         <h:outputStylesheet>
@@ -11,174 +11,110 @@
         </h:outputStylesheet>
         <h:button value="Back" outcome="home" />
         <h:outputText value="#{studentBean.msg}" style="color: brown"/>
-        
-        
-        
-    <rich:panel>
-        <f:facet name="header">
-            <h:outputText value="Validation Form" />
-        </f:facet>
-        <h:form>
-            <h:panelGrid columns="3">
-                <h:outputText value="FirstName:" />
-                <h:inputText label="First Name" id="firstname" validatorMessage="Invalide First Name" required="true" value="#{studentBean.student.firstName}">
-                    <f:validateLength minimum="2" />
-                </h:inputText>
-                <rich:message for="firstname" ajaxRendered="true" />
-                
-                <h:outputText value="Middle Name:" />
-                <h:inputText label="Middle Name"   value="#{studentBean.student.middleName}">
+
+
+
+        <rich:panel>
+            <f:facet name="header">
+                <h:outputText value="Validation Form" />
+            </f:facet>
+            <h:form>
+                <h:panelGrid columns="3">
+                    <h:outputText value="FirstName:" />
+                    <h:inputText label="First Name" id="firstname" validatorMessage="Invalide First Name" required="true" value="#{studentBean.student.firstName}">
+                        <f:validateLength minimum="2" />
+                    </h:inputText>
+                    <rich:message for="firstname" ajaxRendered="true" />
+
+                    <h:outputText value="Middle Name:" />
+                    <h:inputText label="Middle Name"   value="#{studentBean.student.middleName}">
+
+                    </h:inputText>
+                    <rich:message  />
+                    <h:outputText value="LastName:" />
+
+                    <h:inputText label="Last Name" id="lastname" validatorMessage="Invalid Last Name" required="true" value="#{studentBean.student.lastName}">
+                        <f:validateLength minimum="2" />
+                    </h:inputText>
+                    <rich:message for="lastname" ajaxRendered="true" />
+
+                    <h:outputText value="Student Id:" />
+                    <h:inputText label="Id" id="id" required="true" validatorMessage="Id is required" value="#{studentBean.student.id}">
+                    </h:inputText>
+                    <rich:message for="id" ajaxRendered="true" />
+
+                    <h:outputText value="Contact No:" />
+                    <h:inputText label="Id" id="contactno" validatorMessage="Invalid Contact" required="true" value="#{studentBean.student.contactnumber}">
+                        <!--<f:validateLength minimum="10" maximum="10" />-->
+                    </h:inputText>
+                    <rich:message for="middlename" ajaxRendered="true" />
+
+                    <h:outputText value="email:"/>
+                    <h:inputText label="Email" id="email" validatorMessage="Invalid Email" required="true" value="#{studentBean.student.email}">
+                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                    </h:inputText>
+                    <rich:message for="email" ajaxRendered="true" />
+
+                    <h:outputText value="User Name:"/>
+                    <h:inputText label="username" id="username" validatorMessage="User is required" required="true" value="#{studentBean.student.username}">
+                        <!--<f:validateLength minimum="4" maximum="20" />-->   
+                    </h:inputText>
+                    <rich:message for="username" ajaxRendered="true" />
+
+                    <h:outputText value="Password:"/>
+                    <h:inputSecret label="password" id="password" validatorMessage="Password is required" required="true" value="#{studentBean.student.password}">
+                        <!--<f:validateLength minimum="4" maximum="20" />-->
+                    </h:inputSecret>
+                    <rich:message for="password" ajaxRendered="true" />
+
+                    <h:outputText value="Select Batch"></h:outputText>
+                    <rich:select id="selectbatch" value="#{studentBean.student.tempBatch}">
+                        <f:selectItems value="#{studentBean.selectBatch}"  /> 
+                        </rich:select>
+                    <rich:message for="selectbatch" ajaxRendered="true" />
+                   
+                    <h:outputText value="Select Program"></h:outputText>
+                    <rich:select >
+                        <f:selectItems value="#{studentBean.selectProgram}"  />
+                    </rich:select>
                     
-                </h:inputText>
-                <rich:message  />
-                <h:outputText value="LastName:" />
-                
-                <h:inputText label="Last Name" id="lastname" validatorMessage="Invalid Last Name" required="true" value="#{studentBean.student.lastName}">
-                    <f:validateLength minimum="2" />
-                </h:inputText>
-                <rich:message for="lastname" ajaxRendered="true" />
-                
-                <h:outputText value="Student Id:" />
-                <h:inputText label="Id" id="id" required="true" validatorMessage="Id is required" value="#{studentBean.student.id}">
-                </h:inputText>
-                <rich:message for="id" ajaxRendered="true" />
-                
-                <h:outputText value="Contact No:" />
-                <h:inputText label="Id" id="contactno" validatorMessage="Invalid Contact" required="true" value="#{studentBean.student.contactnumber}">
-                 <!--<f:validateLength minimum="10" maximum="10" />-->
-                </h:inputText>
-                <rich:message for="middlename" ajaxRendered="true" />
-                
-                <h:outputText value="email:"/>
-                <h:inputText label="Email" id="email" validatorMessage="Invalid Email" required="true" value="#{studentBean.student.email}">
-                <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
-                </h:inputText>
-                <rich:message for="email" ajaxRendered="true" />
-                                              
-                <h:outputText value="User Name:"/>
-                <h:inputText label="username" id="username" validatorMessage="User is required" required="true" value="#{studentBean.student.username}">
-                <!--<f:validateLength minimum="4" maximum="20" />-->   
-                </h:inputText>
-                <rich:message for="username" ajaxRendered="true" />
-                
-                 <h:outputText value="Password:"/>
-                 <h:inputSecret label="password" id="password" validatorMessage="Password is required" required="true" value="#{studentBean.student.password}">
-                 <!--<f:validateLength minimum="4" maximum="20" />-->
-                </h:inputSecret>
-                <rich:message for="password" ajaxRendered="true" />
-                 
-           <h:outputText value="Select Batch"></h:outputText>
-            <rich:select id="selectbatch" value="#{studentBean.student.tempBatch}">
-                <f:selectItem itemValue="#{studentBean.student.batch}" itemLabel="Feb 2014" />
-                <f:selectItem itemValue="#{studentBean.student.batch}" itemLabel="June 2014" />
-                <f:selectItem itemValue="#{studentBean.student.batch}" itemLabel="Aug 2014" />
-                <f:selectItem itemValue="#{studentBean.student.batch}" itemLabel="Oct 2014" />
-                <f:selectItem itemValue="#{studentBean.student.batch}" itemLabel="Feb 2015" />
-            </rich:select>
-           <rich:message for="selectbatch" ajaxRendered="true" />
-                 
-        
-           <h:outputText value="Select Program"></h:outputText>
-           <rich:select value="#{studentBean.student.tempProgram}">
-               <f:selectItem itemValue="#{studentBean.student.program}" itemLabel="Compro Master" />
-                <f:selectItem itemValue="#{studentBean.student.program}" itemLabel="Compro Bachelor" />
-                <f:selectItem itemValue="#{studentBean.student.program}" itemLabel="Accointing Master" />
-                <f:selectItem itemValue="#{studentBean.student.program}" itemLabel="MBA" />
-                <f:selectItem itemValue="#{studentBean.student.program}" itemLabel="Master in Vedic Science" />
-            </rich:select>
-       
-               
-      </h:panelGrid>
-            
-            <h:commandButton value="Add Student" action="#{studentBean.addStudentInformation()}" /><br/><br/>
-        </h:form>
-        
-                 <a4j:status onstart="#{rich:component('statPane')}.show()" onstop="#{rich:component('statPane')}.hide()" />
-            <rich:dataTable value="#{studentBean.students}" var="student" iterationStatusVar="it" id="table" rows="15">
-            <rich:column>
-                <f:facet name="header">SN</f:facet>
-                #{it.index}
-            </rich:column>
-            <rich:column>
-                <f:facet name="header">Student Id</f:facet>
-                <h:outputText value="#{student.id}" />
-            </rich:column>
-            <rich:column>
-                <f:facet name="header">First Name</f:facet>
-                <h:outputText value="#{student.firstName}" />
-            </rich:column>
-            <rich:column>
-                <f:facet name="header">Middle Name</f:facet>
-                <h:outputText value="#{student.middleName}" />
-            </rich:column>
-            <rich:column>
-                <f:facet name="header">Last Name</f:facet>
-                <h:outputText value="#{student.lastName}" />
-            </rich:column>
-                
-            <rich:column>
-                <f:facet name="header">Email</f:facet>
-                <h:outputText value="#{student.email}" />
-            </rich:column>
-                <rich:column>
-                <f:facet name="header">Action</f:facet>
-                    <a4j:commandLink styleClass="no-decor" render="editGrid" execute="@this"
-                                     oncomplete="#{rich:component('editTeacherPane')}.show()">
-                        <h:graphicImage value="resources/images/edit.png" alt="edit" width="20" height="18"/>
-                        <a4j:param value="#{it.index}" assignTo="#{studentBean.currentStudentIndex}" />
-                        <f:setPropertyActionListener target="#{studentBean.student}" value="#{student}" />
-                    </a4j:commandLink>
 
-                    <a4j:commandLink styleClass="no-decor" render="editGrid" execute="@this"
-                                     oncomplete="#{rich:component('editTeacherPane')}.show()">
-                        <h:graphicImage value="resources/images/delete.png" alt="edit" width="20" height="18"/>
-                        <a4j:param value="#{it.index}" assignTo="#{studentBean.currentStudentIndex}" />
-                        <f:setPropertyActionListener target="#{studentBean.student}" value="#{student}" />
-                    </a4j:commandLink>
-               
-                </rich:column>
-        </rich:dataTable>
-         </rich:panel>
-            
-            
-        
-   
-        <rich:popupPanel header="Edit Panel" id="editTeacherPane" domElementAttachment="parent" width="400" height="170">
-            <h:panelGrid columns="2" id="editGrid">
-                <h:outputText value="teacherName:" />
-                <h:inputText value="#{studentBean.student.fullName}" id="nameid" >
-                </h:inputText>
-                
-                <h:outputText value="email" />
-                <h:inputText value="#{studentBean.student.email}" id="emailid" >
-                </h:inputText>
-                <h:outputText value="contactNumber" />
-                <h:inputText value="#{teacherBean.teacher.contactNumber}" id="contactid" >
-                </h:inputText>
-                
-                <h:outputText value="userName" />
-                <h:inputText value="#{studentBean.student.username}" id="usernameid" >
-                </h:inputText>
-                
-                <h:outputText value="password" />
-                <h:inputText value="#{studentBean.student.password}" id="passwordid" >
-                </h:inputText>
-                <h:outputText value="program" />
-                <h:inputText value="#{studentBean.student.program}" id="programid" >
-                </h:inputText>
-                <h:outputText value="batch" />
-                <h:inputText value="#{studentBean.student.batch}" id="batchid" >
-                </h:inputText>
-                
+                </h:panelGrid>
 
-            </h:panelGrid>
-            <a4j:commandButton value="Update" action="#{settingBean.checkUpdateSetting()}" render="table" execute="editPane"
-                               oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editPane')}.hide();}" />
-            <a4j:commandButton value="Cancel" onclick="#{rich:component('editPane')}.hide();
-                    return false;" />
-        </rich:popupPanel>
+                <h:commandButton value="Add Student" action="#{studentBean.addStudentInformation()}" /><br/><br/>
+
+                <rich:dataTable value="#{studentBean.students}" var="student" iterationStatusVar="it" id="table" rows="15">
+                    <rich:column>
+                        <f:facet name="header">SN</f:facet>
+                            #{it.index}
+                    </rich:column>
+                    <rich:column>
+                        <f:facet name="header">Student Id</f:facet>
+                        <h:outputText value="#{student.id}" />
+                    </rich:column>
+                    <rich:column>
+                        <f:facet name="header">First Name</f:facet>
+                        <h:outputText value="#{student.firstName}" />
+                    </rich:column>
+                    <rich:column>
+                        <f:facet name="header">Middle Name</f:facet>
+                        <h:outputText value="#{student.middleName}" />
+                    </rich:column>
+                    <rich:column>
+                        <f:facet name="header">Last Name</f:facet>
+                        <h:outputText value="#{student.lastName}" />
+                    </rich:column>
+
+                    <rich:column>
+                        <f:facet name="header">Email</f:facet>
+                        <h:outputText value="#{student.email}" />
+                    </rich:column>
+
+                </rich:dataTable>
 
 
-        
+            </h:form>
+        </rich:panel>
+
     </ui:define>   
 </ui:composition>
