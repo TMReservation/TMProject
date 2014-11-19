@@ -4,28 +4,7 @@
 
     <ui:define name="content">
                                  
-        <table id="homeIcons">
-            <tr>
-                <td>
-                    
-                    <h:commandLink class="btnTeacher" action="#{teacherBean.addTeacher()}">
-                        <span>Teacher</span>
-                    </h:commandLink>
-                </td>
-                <td>
-                    <h:commandLink class="btnStudent" action="#{studentBean.addStudent()}">
-                        <span>Student</span>
-                    </h:commandLink>
-                </td>
-                <td>
-                    <h:commandLink class="btnSetting" action="#{settingBean.showSettingList()}">
-                        <span>Setting</span>
-                    </h:commandLink>
-                </td>
-            </tr>
-        </table>
-
-
+        <h:commandButton value="Login" action="#{userBean.checkLogin()}"/>
 
     </ui:define>    
 </ui:composition>
