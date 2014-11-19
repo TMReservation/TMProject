@@ -3,7 +3,7 @@
                 xmlns:rich="http://richfaces.org/rich" template="/template/layout.xhtml">
     
     <ui:define name="content">
-        <h2 align="center">Registration Page</h2>
+        <h2 align="center">Student Registration</h2>
         <h:button value="Back" outcome="home" />
         <h:outputText value="#{studentBean.msg}" style="color: brown"/>
         
@@ -35,7 +35,6 @@
                 
                 <h:outputText value="Student Id:" />
                 <h:inputText label="Id" id="id" required="true" validatorMessage="Id is required" value="#{studentBean.student.id}">
-               <!-- 
                 </h:inputText>
                 <rich:message for="id" ajaxRendered="true" />
                 
