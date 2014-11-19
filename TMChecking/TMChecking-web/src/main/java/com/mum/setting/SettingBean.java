@@ -25,12 +25,14 @@ public class SettingBean implements Serializable{
     List<Setting> settings=new ArrayList<>();
     private int currentSettingIndex;
     private Setting setting;
+    private SettingDB settingDB=new SettingDB();
     
     public String showSettingList(){
         System.out.println("IN SETTING BEAN");
         //settings=settingBeanLocal.getSettingList();
         //settings=settingLocal.getSettingRole();
        // System.out.println("Teacher size is "+settings.size());
+        settings=settingDB.getSettingList();
         return "setting";
     }
     
