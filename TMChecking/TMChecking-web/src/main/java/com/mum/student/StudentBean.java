@@ -24,14 +24,34 @@ public class StudentBean {
     private Student student=new Student();
     List<Student> students=new ArrayList<>();
     StudentDB studentDB=new StudentDB();
-     
+    private String msg="";
    
 
    public void addStudentInformation(){
         System.out.println("INSERT Student");
         System.out.println("SELECT VALUE "+student.getTempBatch());
-        studentDB.insertStudent(student);      
+        boolean check = studentDB.insertStudent(student);   
+        
+        if(check){
+            clear();
+            System.out.println(msg);
+            msg="Student Added sucessfully";
+        }else{
+            msg="Problem in Insertion";
+              System.out.println(msg);
+        }
     }
+   
+   public void clear(){
+       student.setBatch("");
+       student.setContactnumber(0);
+       student.setEmail("");
+       student.setFirstName("");
+       student.setMiddleName("");
+       student.setLastName("");
+       student.setUsername("");
+       student.setId(null);       
+   }
 
     public List<Student> getStudents() {
         return students;
@@ -42,7 +62,7 @@ public class StudentBean {
     }
           
     public String addStudent(){
-      
+        msg="";
         return "addStudent";
     }
 
@@ -54,14 +74,20 @@ public class StudentBean {
         this.studentDB = studentDB;
     }
     
-    
-
     public Student getStudent() {
         return student;
     }
 
     public void setStudent(Student student) {
         this.student = student;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
     
     
