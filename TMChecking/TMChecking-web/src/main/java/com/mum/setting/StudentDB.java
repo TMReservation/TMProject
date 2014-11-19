@@ -42,9 +42,9 @@ public class StudentDB {
     public boolean insertStudent(Student student) {
         try {
             
-            System.out.println("studetn name"+student.getFirstName() + student.getLastName());
+            System.out.println("INSERT HERE>>");
             String sql = "INSERT INTO student VALUES(default,'" + student.getFirstName() + "','" + student.getMiddleName()+ "','" + student.getLastName()+ "','"+ student.getEmail() +"','" +0+"','" + student.getProgram() +"','" + student.getContactnumber() + "','" + student.getUsername() + "','" + student.getPassword() + "','" + student.getBatch() + "')";
-            
+            System.out.println("AFTER SQL");
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -57,12 +57,25 @@ public class StudentDB {
     public List<Student> getStudentList() {
         try {
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM teacher");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM student");
             System.out.println("RS >>" + rs);
             List<Student> students =new ArrayList<>();
             while (rs.next()) {
                 String lastName = rs.getString("first_name");
-                students.add(new Student(rs));
+                Student s=new Student();
+                s.setFirstName(rs.getString("first_name"));
+                s.setMiddleName(rs.getString("middle_name"));
+                s.setLastName(rs.getString("first_name"));
+                s.setEmail(rs.getString("email"));
+                s.setProgram(rs.getString("program"));
+                s.setContactnumber(rs.getInt("contact_number"));
+                s.setUsername(rs.getString("user_name"));
+                s.setPassword("password");
+                s.setBatch("batch");
+
+                
+                
+                students.add(s);
                 System.out.println(lastName + "\n");
             }
             

@@ -24,6 +24,15 @@ public class StudentBean {
     List<Student> students=new ArrayList<>();
     StudentDB studentDB=new StudentDB();
     private String msg="";
+    private int currentStudentIndex;
+
+    public int getCurrentStudentIndex() {
+        return currentStudentIndex;
+    }
+
+    public void setCurrentStudentIndex(int currentStudentIndex) {
+        this.currentStudentIndex = currentStudentIndex;
+    }
    
 
    public void addStudentInformation(){
@@ -40,6 +49,10 @@ public class StudentBean {
               System.out.println(msg);
         }
     }
+
+   
+   
+   
    
    public void clear(){
        student.setBatch("");
@@ -62,6 +75,7 @@ public class StudentBean {
           
     public String addStudent(){
         msg="";
+        students=studentDB.getStudentList();
         return "addStudent";
     }
 
@@ -89,5 +103,10 @@ public class StudentBean {
         this.msg = msg;
     }
     
-    
+ 
+    public String checkUpdateSetting(){
+        System.out.println("Inside update "+student.getId());
+        
+        return "";
+    }
 }

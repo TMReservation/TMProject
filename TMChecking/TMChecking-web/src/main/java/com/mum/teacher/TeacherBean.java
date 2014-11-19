@@ -9,16 +9,8 @@ import com.mum.setting.TeacherDB;
 import com.tm.entities.Teacher;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.bean.SessionScoped;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
 import javax.faces.bean.ManagedBean;
-
-import org.richfaces.model.CalendarDataModel;
-import org.richfaces.model.CalendarDataModelItem;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
@@ -40,6 +32,12 @@ public class TeacherBean {
     public void setCurrentTeacherIndex(int currentTeacherIndex) {
         this.currentTeacherIndex = currentTeacherIndex;
     }
+    public String checkUpdateSetting(){
+        System.out.println("Inside update "+teacher.getId());
+        
+        return "";
+    }
+    
 
     public TeacherDB getTeacherDB() {
         return teacherDB;
@@ -58,28 +56,33 @@ public class TeacherBean {
     public void setMsg(String msg) {
         this.msg = msg;
     }
-
-    public String showTeacherList() {
+    
+   
+    
+    public String showTeacherList(){
         System.out.println("IN TEACHER BEAN>>>");
         return "setting";
     }
-
-    public void addTeacherInformation() {
+    public void addTeacherInformation(){
         System.out.println("INSERT TEACHER");
-        TeacherDB teacherDB = new TeacherDB();
-        boolean checkSubmit = teacherDB.insertTeacher(teacher);
-        if (checkSubmit) {
-            msg = "Data saved successfully";
-
-        } else {
-            msg = "This entry has some error";
-        }
-        System.out.println(">>>>>>>>>>>>>>>");
-        setTeacherInformation();
-
+        TeacherDB teacherDB=new TeacherDB();
+       boolean checkSubmit= teacherDB.insertTeacher(teacher);
+       if(checkSubmit)
+       {
+           msg="Data saved successfully";
+           
+           
+       }
+       else
+       {
+           msg="This entry has some error";
+       }
+       System.out.println(">>>>>>>>>>>>>>>");
+       setTeacherInformation();
+        
     }
-
-    public void setTeacherInformation() {
+    public void setTeacherInformation()
+    {
         teacher.setFirstName("");
         teacher.setMiddleName(null);
         teacher.setLastName(null);
@@ -87,25 +90,22 @@ public class TeacherBean {
         teacher.setUserName(null);
         teacher.setPassword(null);
     //    teacher.setContactNumber(Integer.parseInt(""));
-
+       
         teacher.setId(null);
     }
-
-    public String addTeacher() {
-        teachers = new ArrayList<>();
-        teachers = teacherDB.getTeacherList();
-        for (Teacher t : teachers) {
-            System.out.println("T is " + t.getFirstName());
+    
+    
+    
+    public String addTeacher()
+    {         
+        teachers=new ArrayList<>();
+        teachers=teacherDB.getTeacherList();
+        for(Teacher t:teachers){
+            System.out.println("T is "+t.getFirstName());
         }
-        System.out.println("SIZE IS " + teachers.size());
-        msg = "";
+        System.out.println("SIZE IS "+teachers.size());
+        msg="";
         return "addTeacher";
-    }
-
-
-    public String addFreeTime() {
-        System.out.println("IMMEDIATE TRUE");
-        return "setDateTimeTeacher";
     }
 
     public List<Teacher> getTeachers() {
@@ -123,5 +123,6 @@ public class TeacherBean {
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
-
+    
+    
 }

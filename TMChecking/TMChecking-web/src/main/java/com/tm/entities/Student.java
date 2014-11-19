@@ -27,6 +27,7 @@ public class Student  {
     ResultSet rs;
     private String tempBatch;
     private String tempProgram;
+    private String fullName;
     
     public Student() {
     }
@@ -126,6 +127,14 @@ public class Student  {
 
     public void setBatch(String batch) {
         this.batch = batch;
+    }
+
+    public String getFullName() {
+        return getFirstName()+getMiddleName()+getLastName();
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
     
     

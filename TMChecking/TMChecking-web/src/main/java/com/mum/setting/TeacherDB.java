@@ -62,6 +62,12 @@ public class TeacherDB {
             while (rs.next()) {
                 Teacher teacher=new Teacher();                
                 teacher.setFirstName(rs.getString("first_name"));
+                teacher.setMiddleName(rs.getString("middle_name"));
+                teacher.setLastName(rs.getString("last_name"));
+                teacher.setEmail(rs.getString("email"));
+                teacher.setContactNumber(rs.getInt("contact_number"));
+                teacher.setUserName(rs.getString("user_name"));
+                teacher.setPassword(rs.getString("password"));
                 teachers.add(teacher);
             }
             
