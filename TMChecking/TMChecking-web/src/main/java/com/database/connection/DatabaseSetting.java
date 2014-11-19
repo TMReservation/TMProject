@@ -20,7 +20,7 @@ public class DatabaseSetting {
     private String url = "jdbc:mysql://localhost:3306/";
     private String dbName = "teamreservation";
     private String driver = "com.mysql.jdbc.Driver";
-    private String userName = "root"; 
+    private String userName = "navin"; 
     private String password = "root";
     
     Statement stmt = null;

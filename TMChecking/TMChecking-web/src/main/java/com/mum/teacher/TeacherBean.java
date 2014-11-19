@@ -32,13 +32,20 @@ public class TeacherBean {
     public void addTeacherInformation(){
         System.out.println("INSERT TEACHER");
         TeacherDB teacherDB=new TeacherDB();
-        teacherDB.insertTeacher(teacher);      
+       boolean checkSubmit= teacherDB.insertTeacher(teacher);  
+        
     }
+    
+    
+    
     public String addTeacher()
     {         
         teachers=new ArrayList<>();
-        
-        teachers=teacherDB.getTeacherList();       
+        teachers=teacherDB.getTeacherList();
+        for(Teacher t:teachers){
+            System.out.println("T is "+t.getFirstName());
+        }
+        System.out.println("SIZE IS "+teachers.size());
         return "addTeacher";
     }
 
@@ -58,5 +65,41 @@ public class TeacherBean {
         this.teacher = teacher;
     }
     
+    
+   
+    
+//    public String showTeacherList(){
+//        System.out.println("IN TEACHER BEAN>>>");
+//        return "setting";
+//    }
+//    public void addTeacherInformation(){
+//        System.out.println("INSERT TEACHER");
+//        TeacherDB teacherDB=new TeacherDB();
+//        teacherDB.insertTeacher(teacher);      
+//    }
+//    public String addTeacher()
+//    {         
+//        teachers=new ArrayList<>();
+//        
+//        teachers=teacherDB.getTeacherList();       
+//        return "addTeacher";
+//    }
+//
+//    public List<Teacher> getTeachers() {
+//        return teachers;
+//    }
+
+//    public void setTeachers(List<Teacher> teachers) {
+//        this.teachers = teachers;
+//    }
+//
+//    public Teacher getTeacher() {
+//        return teacher;
+//    }
+//
+//    public void setTeacher(Teacher teacher) {
+//        this.teacher = teacher;
+//    }
+//    
     
 }

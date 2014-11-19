@@ -42,7 +42,7 @@ public class TeacherDB {
     public boolean insertTeacher(Teacher teacher) {
         try {
             System.out.println("INSERT HERE>>");
-            String sql = "INSERT INTO teacher VALUES(default,'" + teacher.getFirstName() + "','" + teacher.getLastName() + "','" + teacher.getMiddleName() + "')";
+            String sql = "INSERT INTO teacher VALUES(default,'" + teacher.getFirstName() + "','" + teacher.getMiddleName() + "','" + teacher.getLastName() + "','" +teacher.getEmail()+"','"+teacher.getContactNumber()+"','"+teacher.getUserName()+"','"+teacher.getPassword()+"')";
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
