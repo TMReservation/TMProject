@@ -9,8 +9,16 @@ import com.mum.setting.TeacherDB;
 import com.tm.entities.Teacher;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+import javax.faces.bean.ManagedBean;
+
+import org.richfaces.model.CalendarDataModel;
+import org.richfaces.model.CalendarDataModelItem;
 
 /**
  *
@@ -90,22 +98,25 @@ public class TeacherBean {
         teacher.setUserName(null);
         teacher.setPassword(null);
     //    teacher.setContactNumber(Integer.parseInt(""));
-       
+
         teacher.setId(null);
     }
-    
-    
-    
-    public String addTeacher()
-    {         
-        teachers=new ArrayList<>();
-        teachers=teacherDB.getTeacherList();
-        for(Teacher t:teachers){
-            System.out.println("T is "+t.getFirstName());
+
+    public String addTeacher() {
+        teachers = new ArrayList<>();
+        teachers = teacherDB.getTeacherList();
+        for (Teacher t : teachers) {
+            System.out.println("T is " + t.getFirstName());
         }
-        System.out.println("SIZE IS "+teachers.size());
-        msg="";
+        System.out.println("SIZE IS " + teachers.size());
+        msg = "";
         return "addTeacher";
+    }
+
+
+    public String addFreeTime() {
+        System.out.println("IMMEDIATE TRUE");
+        return "setDateTimeTeacher";
     }
 
     public List<Teacher> getTeachers() {
@@ -123,6 +134,5 @@ public class TeacherBean {
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
-    
-    
+
 }

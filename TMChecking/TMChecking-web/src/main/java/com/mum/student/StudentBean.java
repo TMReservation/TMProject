@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -25,6 +26,10 @@ public class StudentBean {
     StudentDB studentDB=new StudentDB();
     private String msg="";
     private int currentStudentIndex;
+    private ArrayList<SelectItem> selectProgram;
+    private ArrayList<SelectItem> selectBatch;
+
+    
 
     public int getCurrentStudentIndex() {
         return currentStudentIndex;
@@ -35,18 +40,19 @@ public class StudentBean {
     }
    
 
-   public void addStudentInformation(){
+    
+    public void addStudentInformation() {
         System.out.println("INSERT Student");
-        System.out.println("SELECT VALUE "+student.getTempBatch());
-        boolean check = studentDB.insertStudent(student);   
-        
-        if(check){
+        System.out.println("SELECT VALUE " + student.getTempBatch());
+        boolean check = studentDB.insertStudent(student);
+
+        if (check) {
             clear();
             System.out.println(msg);
-            msg="Student Added sucessfully";
-        }else{
-            msg="Problem in Insertion";
-              System.out.println(msg);
+            msg = "Student Added sucessfully";
+        } else {
+            msg = "Problem in Insertion";
+            System.out.println(msg);
         }
     }
 
@@ -62,9 +68,53 @@ public class StudentBean {
        student.setMiddleName("");
        student.setLastName("");
        student.setUsername("");
-       student.setId(null);       
+       //student.setId(null);       
    }
 
+   
+    public String initiateProgram() {
+
+        List<String> programs = new ArrayList<String>();
+        programs.add("Compro Master");
+        programs.add("Compro Bachelor");
+        programs.add("Accounting");
+        programs.add("MBA");
+
+        SelectItem programItem = new SelectItem();
+        selectProgram = new ArrayList<SelectItem>();
+        for (int i = 0; i < programs.size(); i++) {
+            programItem = new SelectItem(i, programs.get(i));
+         
+            selectProgram.add(programItem);
+        }
+           System.out.println("Select programe "+selectProgram.size());
+	
+        return "";
+    }
+    
+     public String listBatch() {
+
+        List<String> batchs = new ArrayList<String>();
+        batchs.add("Feb 2014");
+        batchs.add("June 2014");
+        batchs.add("Aug 2014");
+        batchs.add("Oct 2014");
+        batchs.add("Feb 2015");
+        batchs.add("June 2015");
+
+        SelectItem batchItem = new SelectItem();
+        selectBatch = new ArrayList<SelectItem>();
+        for (int i = 0; i < batchs.size(); i++) {
+            batchItem = new SelectItem(i, batchs.get(i));
+         
+            selectBatch.add(batchItem);
+        }
+           	
+        return "";
+    }
+
+    
+     
     public List<Student> getStudents() {
         return students;
     }
@@ -86,7 +136,7 @@ public class StudentBean {
     public void setStudentDB(StudentDB studentDB) {
         this.studentDB = studentDB;
     }
-    
+
     public Student getStudent() {
         return student;
     }
@@ -101,6 +151,14 @@ public class StudentBean {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public ArrayList<SelectItem> getSelectProgram() {
+        return selectProgram;
+    }
+
+    public ArrayList<SelectItem> getSelectBatch() {
+        return selectBatch;
     }
     
  
