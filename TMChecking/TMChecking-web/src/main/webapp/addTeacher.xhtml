@@ -12,6 +12,7 @@
         </h:outputStylesheet>
 
         <h:button value="BACK" outcome="home.xhtml" />
+        <h:commandButton value="Add Date" immediate="true"  action="#{teacherBean.addFreeTime()}"/>
         <h:outputText value="#{teacherBean.msg}" style="color:green"/>
         <rich:panel>            
             <f:facet name="header">
