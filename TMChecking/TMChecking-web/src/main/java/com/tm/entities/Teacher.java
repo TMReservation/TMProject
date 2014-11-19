@@ -23,6 +23,16 @@ public class Teacher implements Serializable {
     private int contactNumber;
     private String userName;
     private String password;
+    private String fullName;
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+    
 
     public String getEmail() {
         return email;

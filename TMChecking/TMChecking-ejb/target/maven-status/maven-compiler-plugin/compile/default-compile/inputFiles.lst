@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 F:\latest\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\team\setting\SettingBean.java
 F:\latest\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\tm\student\StudentBean.java
 F:\latest\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\tm\entities\Student.java
@@ -10,3 +11,17 @@ F:\latest\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\tm\teacher\Teach
 F:\latest\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\team\bean\First.java
 F:\latest\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\tm\entities\Test.java
 F:\latest\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\tm\teacher\TeacherBeanLocal.java
+=======
+E:\latest Project\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\tm\student\StudentBean.java
+E:\latest Project\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\team\bean\First.java
+E:\latest Project\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\tm\entities\Setting.java
+E:\latest Project\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\tm\entities\Teacher.java
+E:\latest Project\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\tm\entities\Test.java
+E:\latest Project\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\tm\student\StudentBeanLocal.java
+E:\latest Project\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\tm\teacher\TeacherBean.java
+E:\latest Project\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\tm\teacher\TeacherBeanLocal.java
+E:\latest Project\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\team\bean\FirstLocal.java
+E:\latest Project\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\team\setting\SettingBean.java
+E:\latest Project\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\team\setting\SettingBeanLocal.java
+E:\latest Project\TMProject\TMChecking\TMChecking-ejb\src\main\java\com\tm\entities\Student.java
+>>>>>>> Stashed changes
