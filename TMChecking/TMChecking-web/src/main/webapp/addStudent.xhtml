@@ -13,16 +13,16 @@
         <h:form>
             <h:panelGrid columns="3">
                 <h:outputText value="FirstName:" />
-                <h:inputText label="First Name" id="firstname" validatorMessage="Invalide Name" required="true" value="#{studentBean.student.firstName}">
+                <h:inputText label="First Name" id="firstname" validatorMessage="Invalide First Name" required="true" value="#{studentBean.student.firstName}">
                     <f:validateLength minimum="2" />
                 </h:inputText>
                 <rich:message for="firstname" ajaxRendered="true" />
                 
                 <h:outputText value="Middle Name:" />
-                <h:inputText label="Middle Name" id="middlename"  value="#{studentBean.student.middleName}">
-                    <!--<f:validateLength minimum="3" />-->
+                <h:inputText label="Middle Name"   value="#{studentBean.student.middleName}">
+                    
                 </h:inputText>
-                <rich:message for="middlename" ajaxRendered="true" />
+                <rich:message  />
                 <h:outputText value="LastName:" />
                 
                 <h:inputText label="Last Name" id="lastname" validatorMessage="Invalid Last Name" required="true" value="#{studentBean.student.lastName}">
@@ -32,7 +32,7 @@
                 
                 <h:outputText value="Student Id:" />
                 <h:inputText label="Id" id="id" required="true" validatorMessage="Id is required" value="#{studentBean.student.id}">
-               <!-- <f:validateLength minimum="6" maximum="6" />-->
+               <!-- 
                 </h:inputText>
                 <rich:message for="id" ajaxRendered="true" />
                 
