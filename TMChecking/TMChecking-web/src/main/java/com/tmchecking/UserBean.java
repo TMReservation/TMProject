@@ -6,6 +6,7 @@
 package com.tmchecking;
 
 //import com.team.bean.FirstLocal;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -15,34 +16,34 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean(name = "userBean")
 @SessionScoped
-public class UserBean {
+public class UserBean  {
 
     boolean showIT = false;
     boolean showStudent = false;
     boolean showTeacher = false;
-    private String username;
-    private String password;
+    private String username="";
+    private String password="";
     private String msg = "";
 
     public String checkLogin() {
-        msg = "";
-        if (username.equalsIgnoreCase("student") && (password.equalsIgnoreCase("student"))) {
-            showStudent = true;
-            showIT = false;
-            showTeacher = false;
-        } else if (username.equalsIgnoreCase("teacher") && (password.equalsIgnoreCase("teacher"))) {
-            showStudent = false;
-            showIT = false;
-            showTeacher = true;
-        } else if (username.equalsIgnoreCase("it") && (password.equalsIgnoreCase("it"))) {
-            showStudent = true;
-            showIT = true;
-            showTeacher = true;
-        } else {
-            msg = "Invalid username and password";
-            return "index";
-        }
-        msg = "";
+            msg = "";            
+            if (username.equalsIgnoreCase("student") && (password.equalsIgnoreCase("student"))) {
+                showStudent = true;
+                showIT = false;
+                showTeacher = false;
+            } else if (username.equalsIgnoreCase("teacher") && (password.equalsIgnoreCase("teacher"))) {
+                showStudent = false;
+                showIT = false;
+                showTeacher = true;
+            } else if (username.equalsIgnoreCase("it") && (password.equalsIgnoreCase("it"))) {
+                showStudent = true;
+                showIT = true;
+                showTeacher = true;
+            } else {
+                msg = "Invalid username and password";
+                return "index";
+            }
+            msg = "";
         return "home";
     }
 
