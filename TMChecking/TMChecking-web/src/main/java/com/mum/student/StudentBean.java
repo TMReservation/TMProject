@@ -5,6 +5,7 @@
  */
 package com.mum.student;
 
+import com.mum.setting.StudentDB;
 import com.tm.entities.Student;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,15 +22,16 @@ import javax.faces.bean.SessionScoped;
 public class StudentBean {
     
     private Student student=new Student();
-    //private ArrayList<Student> students=new ArrayList();
-    
-    // @EJB
-    
-     List<Student> students=new ArrayList<>();
-    //TeacherBeanLocal teacherBeanLocal;
-   // List<Teacher> teachers=new ArrayList<>();
-
+    List<Student> students=new ArrayList<>();
+    StudentDB studentDB=new StudentDB();
+     
    
+
+   public void addStudentInformation(){
+        System.out.println("INSERT Student");
+        System.out.println("SELECT VALUE "+student.getTempBatch());
+        studentDB.insertStudent(student);      
+    }
 
     public List<Student> getStudents() {
         return students;
@@ -38,19 +40,18 @@ public class StudentBean {
     public void setStudents(List<Student> students) {
         this.students = students;
     }
-    
-      
+          
     public String addStudent(){
-        
-        System.out.println("First Name>>>"+ student.getFirstName());
-        System.out.println("Middle Name>>>"+ student.getMiddleName());
-        System.out.println("Last Name>>>"+ student.getLastName());
-        System.out.println("ID >>>>>"+ student.getId());
-        System.out.println("Email >>>>"+student.getEmail());
-        
-        //students=studentBeanLocal.
-        
+      
         return "addStudent";
+    }
+
+    public StudentDB getStudentDB() {
+        return studentDB;
+    }
+
+    public void setStudentDB(StudentDB studentDB) {
+        this.studentDB = studentDB;
     }
     
     

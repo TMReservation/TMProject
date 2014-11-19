@@ -5,52 +5,37 @@
  */
 package com.tm.entities;
 
-import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import java.sql.ResultSet;
 
 /**
  *
  * @author sunil
  */
-@Entity
-@Table(name = "student")
-@NamedQueries({
-    @NamedQuery(name = "Student.findAll", query = "SELECT s FROM Student s")})
-public class Student implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
-    @Size(max = 255)
-    @Column(name = "first_name")
-    private String firstName;
-    @Size(max = 255)
-    @Column(name = "middle_name")
-    private String middleName;
-    @Size(max = 255)
-    @Column(name = "last_name")
-    private String lastName;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Size(max = 255)
-    @Column(name = "email")
-    private String email;
 
+public class Student  {   
+    private Integer id;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private String email;
+    private Integer isDelete;
+    private String program;
+    private int contactnumber;
+    private String username;
+    private String password;
+    private String batch;
+    ResultSet rs;
+    private String tempBatch;
+    private String tempProgram;
+    
     public Student() {
     }
-
     public Student(Integer id) {
         this.id = id;
+    }
+
+    public Student(ResultSet rs) {
+        this.rs=rs;
     }
 
     public Integer getId() {
@@ -93,6 +78,58 @@ public class Student implements Serializable {
         this.email = email;
     }
 
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
+   
+
+    public String getProgram() {
+        return program;
+    }
+
+    public void setProgram(String program) {
+        this.program = program;
+    }
+
+    public int getContactnumber() {
+        return contactnumber;
+    }
+
+    public void setContactnumber(int contactnumber) {
+        this.contactnumber = contactnumber;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getBatch() {
+        return batch;
+    }
+
+    public void setBatch(String batch) {
+        this.batch = batch;
+    }
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -117,5 +154,21 @@ public class Student implements Serializable {
     public String toString() {
         return "com.tm.entities.Student[ id=" + id + " ]";
     }
-    
+
+    public String getTempBatch() {
+        return tempBatch;
+    }
+
+    public void setTempBatch(String tempBatch) {
+        this.tempBatch = tempBatch;
+    }
+
+    public String getTempProgram() {
+        return tempProgram;
+    }
+
+    public void setTempProgram(String tempProgram) {
+        this.tempProgram = tempProgram;
+    }
+            
 }

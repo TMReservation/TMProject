@@ -4,7 +4,7 @@
     <ui:define name="content">
         <h2>Add Teacher</h2>
         <rich:panel>
-            
+            <!--<h:commandButton value="LogOut" action="{teacherBean.logOut()}"/>-->
             <f:facet name="header">
                 <h:outputText value="Teacher Info Entry"></h:outputText>
             </f:facet>
@@ -26,30 +26,7 @@
                 </h:inputText>
                 <rich:message for="lastname" ajaxRendered="true" />
                 
-                <h:outputText value="email:" />
-                <h:inputText label="email" id="email"  value="#{teacherBean.teacher.email}"  validatorMessage="Invalid email">
-                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
-                </h:inputText>
-                <rich:message for="email" ajaxRendered="true" />
-                
-                <h:outputText value="contactNumber:" />
-                <h:inputText value="#{teacherBean.teacher.contactNumber}">
-                    
-                </h:inputText>
-                <rich:message />
-                
-                <h:outputText value="userName:" />
-                <h:inputText label="userName" id="username" required="true"  validatorMessage="Invalid Username"    value="#{teacherBean.teacher.userName}">
-                    <f:validateLength minimum="2"/>
-                </h:inputText>
-                <rich:message for="username" ajaxRendered="true"/>
-                
-                <h:outputText value="password:" />
-                
-                <h:inputSecret label="password" id="password" required="true" value="#{teacherBean.teacher.password}" validatorMessage="Invalid password(at least 4 characters needed)">
-                    <f:validateLength minimum="4" maximum="20"  />
-                </h:inputSecret>
-                <rich:message ajaxRendered="true" for="password"/>
+            
                 
 
                 <h:outputText value=""/>
@@ -60,30 +37,91 @@
 
 
             </h:panelGrid>
-             <rich:dataTable value="#{teacherBean.teachers}" var="teacher" iterationStatusVar="it" id="table" rows="15">
+            #{teacherBean.teachers.size()}
+             <rich:dataTable value="#{teacherBean.teachers}" var="teach" iterationStatusVar="it" id="table" rows="15">
                 <rich:column>
                 <f:facet name="header">S. No.</f:facet>
-                #{it.index+1}
+                #{it.index}
             </rich:column>
             <rich:column>
                 <f:facet name="header">First Name</f:facet>
-                <h:outputText value="#{teacher.firstName}" />
+                <h:outputText value="#{teach.firstName}" />
             </rich:column>
                  <rich:column>
                 <f:facet name="header">Last Name</f:facet>
-                <h:outputText value="#{teacher.lastName}" />
+                <h:outputText value="#{teach.lastName}" />
             </rich:column>
-                 
-                 <rich:column>
+                 <!--<rich:column>
                 <f:facet name="header">email</f:facet>
-                <h:outputText value="#{teacher.email}" />
+                <h:outputText value="{teacher.email}" />
             </rich:column>
                  <rich:column>
                 <f:facet name="header">contact Number</f:facet>
-                <h:outputText value="#{teacher.contactNumber}" />
-            </rich:column>
-                 </rich:dataTable>           
- </rich:panel>
+                <h:outputText value="{teacher.contactNumber}" />
+            </rich:column>-->
+               <!--  <rich:column>
+                <a4j:commandLink  execute="@this" render="@none"
+                    oncomplete="{rich:component('confirmPane')}.show()">
+                    <h:commandLink value="DELETE"  />
+                    <a4j:param value="{it.index}"  />
+                </a4j:commandLink>
+                <a4j:commandLink  render="editGrid" execute="@this"
+                    oncomplete="{rich:component('editPane')}.show()">
+                    <h:commandLink value="EDIT"  />
+                    <a4j:param value="{it.index}" assignTo="{carsBean.currentCarIndex}" /-->
+                   <!-- <f:setPropertyActionListener target="{carsBean.editedCar}" value="{car}" />-->
+               <!-- </a4j:commandLink>-->
+           <!-- </rich:column>-->
+        </rich:dataTable>
+            
+            
+        </rich:panel>
         
-        </ui:define>   
+       <!--<a4j:jsFunction name="remove" action="{teacherBean.remove}" render="table" execute="@this"
+            oncomplete="{rich:component('confirmPane')}.hide();" />
+ 
+        <rich:popupPanel id="statPane" autosized="true">
+            <h:graphicImage value="/images/ai.gif" alt="ai" />
+            Please wait...
+        </rich:popupPanel>
+ 
+        <rich:popupPanel id="confirmPane" autosized="true">
+            Are you sure you want to delete the row?
+            <a4j:commandButton value="Cancel" onclick="{rich:component('confirmPane')}.hide(); return false;" />
+            <a4j:commandButton value="Delete" onclick="remove(); return false;" />
+        </rich:popupPanel>
+ 
+        <rich:popupPanel header="Edit Teacher Details" id="editPane" domElementAttachment="parent" width="400" height="170">
+            <h:panelGrid columns="3" id="editGrid">
+                <h:outputText value="firstName" />
+                <h:outputText value="" />
+                <h:panelGroup />
+                <h:outputText value="lastName" />
+                <h:outputText value="" />
+                <h:panelGroup />
+                <h:outputText value="email" />
+                <h:inputText value="" required="true" requiredMessage="email is required" id="email"
+                    converterMessage="Should be a valid price" validatorMessage="Should be a valid email" label="email field">
+                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                </h:inputText>
+                <rich:message id="contactNumber" for="contactNumber" />
+                <h:outputText value="ContactNumber" />
+                <h:inputText value="" id="mage" converterMessage="Should be a valid contact Number"
+                    validatorMessage="Should be a valid contact Number" label="Contact Number field">
+                    <f:validateRegex pattern="\\d{3}d{7}"/>
+                </h:inputText>
+                <rich:message id="madeMsg" for="mage" />
+                <h:outputText value="VIN" />
+                <h:inputText value="{carsBean.editedCar.vin}" id="vin" required="true"
+                    validatorMessage="Not a valid 17-digit VIN" converterMessage="Not a valid 17-digit VIN"
+                    requiredMessage="VIN is required">
+                    <f:validateLength minimum="17" maximum="17" />
+                </h:inputText>
+                <rich:message id="vinMsg" for="vin" />
+            </h:panelGrid>
+            <a4j:commandButton value="Store" action="{carsBean.store}" render="table" execute="editPane"
+                oncomplete="if ({facesContext.maximumSeverity==null}) {{rich:component('editPane')}.hide();}" />
+            <a4j:commandButton value="Cancel" onclick="{rich:component('editPane')}.hide(); return false;" />
+        </rich:popupPanel>-->
+    </ui:define>   
 </ui:composition>
