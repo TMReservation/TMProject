@@ -3,6 +3,9 @@
   <persistence-unit name="tmReservation" transaction-type="JTA">
     <jta-data-source>teamReservation</jta-data-source>
     <class>com.tm.entities.Test</class>
+    <class>com.tm.entities.Setting</class>
+    <class>com.tm.entities.Student</class>
+    <class>com.tm.entities.Teacher</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>
