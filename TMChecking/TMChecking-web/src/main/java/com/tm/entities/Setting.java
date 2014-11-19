@@ -16,6 +16,7 @@ public class Setting implements Serializable {
     private Integer id;
     private String role;
     private Integer teacherId;
+    private String tempFullName;
 
     public Setting() {
     }
@@ -46,6 +47,14 @@ public class Setting implements Serializable {
 
     public void setTeacherId(Integer teacherId) {
         this.teacherId = teacherId;
+    }
+
+    public String getTempFullName() {
+        return tempFullName;
+    }
+
+    public void setTempFullName(String tempFullName) {
+        this.tempFullName = tempFullName;
     }
 
     

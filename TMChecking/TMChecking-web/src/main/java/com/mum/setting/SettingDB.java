@@ -50,6 +50,9 @@ public class SettingDB {
                 Setting setting = new Setting();
                 setting.setId(rs.getInt("id"));
                 setting.setRole(rs.getString("role"));
+                Teacher t=findByTeacherId(rs.getInt("teacher_id"));
+                setting.setTeacherId(rs.getInt("teacher_id"));
+                setting.setTempFullName(t.getFirstName()+t.getLastName());
                 settings.add(setting);
             }
             return settings;
@@ -60,4 +63,24 @@ public class SettingDB {
         }
         return null;
     }
+
+    public Teacher findByTeacherId(int id) {
+           Teacher teacher = new Teacher();
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM teacher where id='" + id + "'");
+            while (rs.next()) {              
+                System.out.println(" NAME IS: " + rs.getString("first_name") + "lastName " + rs.getString("last_name"));
+                teacher.setFirstName(rs.getString("first_name"));
+                teacher.setLastName(rs.getString("last_name"));                
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+        return teacher;
+
+    }
+
 }

@@ -19,21 +19,21 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean(name = "settingBean")
 @SessionScoped
-public class SettingBean implements Serializable{
-   // @EJB
-   // private SettingBeanLocal settingBeanLocal;
+public class SettingBean implements Serializable{  
     List<Setting> settings=new ArrayList<>();
     private int currentSettingIndex;
     private Setting setting;
     private SettingDB settingDB=new SettingDB();
     
-    public String showSettingList(){
-        System.out.println("IN SETTING BEAN");
-        //settings=settingBeanLocal.getSettingList();
-        //settings=settingLocal.getSettingRole();
-       // System.out.println("Teacher size is "+settings.size());
+    public String showSettingList(){               
         settings=settingDB.getSettingList();
         return "setting";
+    }
+    
+    public String checkUpdateSetting(){
+        System.out.println("Inside update "+setting.getId());
+        
+        return "";
     }
     
      public void store() {
@@ -57,7 +57,6 @@ public class SettingBean implements Serializable{
     }
 
     public Setting getSetting() {
-       // System.out.println("HIT SETTING BEAN "+setting.getId());
         return setting;
     }
 

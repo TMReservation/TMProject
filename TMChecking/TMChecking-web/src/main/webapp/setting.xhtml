@@ -19,6 +19,10 @@
                     #{it.index+1}
             </rich:column>
             <rich:column>
+                <f:facet name="header">Teacher</f:facet>
+                <h:outputText value="#{setting.tempFullName}" />
+            </rich:column>
+            <rich:column>
                 <f:facet name="header">Role</f:facet>
                 <h:outputText value="#{setting.role}" />
             </rich:column>
@@ -27,6 +31,13 @@
                 <a4j:commandLink styleClass="no-decor" render="editGrid" execute="@this"
                                  oncomplete="#{rich:component('editPane')}.show()">
                     <h:graphicImage value="resources/images/edit.png" alt="edit" width="20" height="18"/>
+                    <a4j:param value="#{it.index}" assignTo="#{settingBean.currentSettingIndex}" />
+                    <f:setPropertyActionListener target="#{settingBean.setting}" value="#{setting}" />
+                </a4j:commandLink>
+                
+                <a4j:commandLink styleClass="no-decor" render="editGrid" execute="@this"
+                                 oncomplete="#{rich:component('editPane')}.show()">
+                    <h:graphicImage value="resources/images/delete.png" alt="edit" width="20" height="18"/>
                     <a4j:param value="#{it.index}" assignTo="#{settingBean.currentSettingIndex}" />
                     <f:setPropertyActionListener target="#{settingBean.setting}" value="#{setting}" />
                 </a4j:commandLink>
@@ -43,21 +54,15 @@
                 </rich:select>
 
                 <rich:message id="priceMsg" for="price" />
-                <h:outputText value="Mileage" />
-                <h:inputText value="#{settingBean.setting.teacherId}" id="mage" converterMessage="Should be a valid mileage"
+                <h:outputText value="TeacheName:" />
+                <h:inputText value="#{settingBean.setting.tempFullName}" id="mage" converterMessage="Should be a valid mileage"
                              validatorMessage="Should be a valid mileage" label="Mileage field">
                     <f:validateDoubleRange minimum="0.00" maximum="99999999.00" />
                 </h:inputText>
                 <rich:message id="madeMsg" for="mage" />
-                <h:outputText value="VIN" />
-                <h:inputText value="#{settingBean.setting.teacherId}" id="vin" required="true"
-                             validatorMessage="Not a valid 17-digit VIN" converterMessage="Not a valid 17-digit VIN"
-                             requiredMessage="VIN is required">
-                    <f:validateLength minimum="17" maximum="17" />
-                </h:inputText>
-                <rich:message id="vinMsg" for="vin" />
+
             </h:panelGrid>
-            <a4j:commandButton value="Update" action="#{teacherBean.store}" render="table" execute="editPane"
+            <a4j:commandButton value="Update" action="#{settingBean.checkUpdateSetting()}" render="table" execute="editPane"
                                oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editPane')}.hide();}" />
             <a4j:commandButton value="Cancel" onclick="#{rich:component('editPane')}.hide();
                     return false;" />
