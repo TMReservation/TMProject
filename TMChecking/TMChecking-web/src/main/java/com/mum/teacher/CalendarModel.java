@@ -15,6 +15,7 @@ import java.util.GregorianCalendar;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 import org.richfaces.model.CalendarDataModel;
 import org.richfaces.model.CalendarDataModelItem;
@@ -26,37 +27,30 @@ public class CalendarModel implements CalendarDataModel {
     private static final String WEEKEND_DAY_CLASS = "wdc";
     private static final String BUSY_DAY_CLASS = "bdc";
     private static final String BOUNDARY_DAY_CLASS = "rf-ca-boundary-dates";
-
+    private Date currentDate;
    
 
    
     
    
     private boolean checkBusyDay(Calendar calendar) {
-        System.out.println("CheckBusy "+calendar);
         return (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY || calendar.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY);
     }
 
     private boolean checkWeekend(Calendar calendar) {
-          System.out.println("check weekend "+calendar);
         return (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY || calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY);
     }
 
     @Override
-    public CalendarDataModelItem[] getData(Date[] dateArray) {
-        System.out.println("Click select item>>>>>> "+dateArray);
-        
+    public CalendarDataModelItem[] getData(Date[] dateArray) {        
         CalendarDataModelItem[] modelItems = new CalendarModelItem[dateArray.length];
         Calendar current = GregorianCalendar.getInstance();
         Calendar today = GregorianCalendar.getInstance();
-        System.out.println("TODAY "+current);
         today.setTime(new Date());
-        for (int i = 0; i < dateArray.length; i++) {
-           
+        for (int i = 0; i < dateArray.length; i++) {           
             current.setTime(dateArray[i]);
             CalendarModelItem modelItem = new CalendarModelItem();
-            if (current.before(today)) {
-                
+            if (current.before(today)) {                
                 modelItem.setEnabled(false);
                 modelItem.setStyleClass(BOUNDARY_DAY_CLASS);
             } else if (checkBusyDay(current)) {
@@ -72,13 +66,27 @@ public class CalendarModel implements CalendarDataModel {
             }
             modelItems[i] = modelItem;
         }
-        System.out.println("MODEL ITEM "+modelItems);
         return modelItems;
+    }
+    public String addTMCheckingSchedule(){
+        System.out.println("Current date is "+currentDate);
+        return "";
     }
 
     @Override
     public Object getToolTip(Date date) {
-        System.out.println("DATE OBJECT "+date);
         return null;
     }
+
+    public Date getCurrentDate() {
+        return currentDate;
+    }
+
+    public void setCurrentDate(Date currentDate) {
+        this.currentDate = currentDate;
+    }
+
+    
+    
+    
 }

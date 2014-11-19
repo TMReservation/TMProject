@@ -15,8 +15,9 @@
         font-style: italic;
         }
     </h:outputStylesheet>
-        <rich:calendar mode="ajax" boundaryDatesMode="scroll" dataModel="#{calendarModel}">
+        <rich:calendar value="#{calendarModel.currentDate}" mode="ajax" boundaryDatesMode="scroll" dataModel="#{calendarModel}">
             <f:ajax render="@this"/>
         </rich:calendar>
+        <h:commandButton value="Add Schedule" action="#{calendarModel.addTMCheckingSchedule()}"/>
     </ui:define>   
 </ui:composition>
