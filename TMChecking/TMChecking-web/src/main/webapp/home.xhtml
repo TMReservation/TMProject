@@ -7,17 +7,18 @@
         <table id="homeIcons">
             <tr>
                 <td>
-                    <h:commandLink class="btnTeacher" action="#{teacherBean.addTeacher()}">
+                    
+                    <h:commandLink class="btnTeacher" rendered="#{userBean.showTeacher}" action="#{teacherBean.addTeacher()}" >
                         <span>Teacher</span>
                     </h:commandLink>
                 </td>
-                <td>
-                    <h:commandLink class="btnStudent" action="#{studentBean.addStudent()}">
+                <td >
+                    <h:commandLink class="btnStudent"  rendered="#{userBean.showStudent}" action="#{studentBean.addStudent()}">
                         <span>Student</span>
                     </h:commandLink>
                 </td>
                 <td>
-                    <h:commandLink class="btnSetting" action="#{settingBean.showSettingList()}">
+                    <h:commandLink class="btnSetting" rendered="#{userBean.showIT}" action="#{settingBean.showSettingList()}">
                         <span>Setting</span>
                     </h:commandLink>
                 </td>
