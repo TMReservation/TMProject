@@ -21,9 +21,28 @@ import javax.faces.bean.SessionScoped;
 public class TeacherBean {
     List<Teacher> teachers=new ArrayList<>();
     Teacher teacher=new Teacher();
+    private int currentTeacherIndex;
     TeacherDB teacherDB=new TeacherDB();
     private String msg="";
 
+    public int getCurrentTeacherIndex() {
+        return currentTeacherIndex;
+    }
+
+    public void setCurrentTeacherIndex(int currentTeacherIndex) {
+        this.currentTeacherIndex = currentTeacherIndex;
+    }
+
+    public TeacherDB getTeacherDB() {
+        return teacherDB;
+    }
+
+    public void setTeacherDB(TeacherDB teacherDB) {
+        this.teacherDB = teacherDB;
+    }
+
+    
+    
     public String getMsg() {
         return msg;
     }

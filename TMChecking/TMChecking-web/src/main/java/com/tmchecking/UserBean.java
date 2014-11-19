@@ -23,7 +23,7 @@ public class UserBean {
     
     public String checkLogin(){
         showStudent=false;
-        showIT=false;
+        showIT=true;
         showTeacher=true;
         return "home";
     }

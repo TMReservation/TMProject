@@ -3,44 +3,46 @@
                 xmlns:rich="http://richfaces.org/rich" template="/template/layout.xhtml">    
     <ui:define name="content">
         <h2>Add Teacher</h2>
-        
+
+
+        <h:outputStylesheet>
+            a.no-decor>img {
+            border: none;
+            }
+        </h:outputStylesheet>
+
         <h:button value="BACK" outcome="home.xhtml" />
         <h:outputText value="#{teacherBean.msg}" style="color:green"/>
-        <rich:panel>
-            
+        <rich:panel>            
             <f:facet name="header">
                 <h:outputText value="Teacher Info Entry"></h:outputText>
             </f:facet>
-            
-            
             <h:panelGrid columns="3">
-  
-                
                 <h:outputText value="firstName:" />
-                
+
                 <h:inputText label="firstName" id="firstname" required="true" validatorMessage="Invalid FirstName" value="#{teacherBean.teacher.firstName}">
-                 <f:validateLength minimum="2" />
+                    <f:validateLength minimum="2" />
                 </h:inputText>
-                
+
                 <rich:message for="firstname" ajaxRendered="true" />
-                
-                
+
+
                 <h:outputText value="LastName:" />
                 <h:inputText label="lastName" id="lastname" required="true" value="#{teacherBean.teacher.lastName}"   validatorMessage="Invalid Last Name">
                     <f:validateLength minimum="3"/>
-                    
+
                 </h:inputText>
                 <rich:message for="lastname" ajaxRendered="true" />
-                
+
                 <h:outputText value="email:" />
                 <h:inputText label="email" id="email"  value="#{teacherBean.teacher.email}"  validatorMessage="Invalid email">
                     <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
                 </h:inputText>
                 <rich:message for="email" ajaxRendered="true" />
-            
+
                 <h:outputText value="contactNumber:" />
                 <h:inputText value="#{teacherBean.teacher.contactNumber}">
-                
+
                 </h:inputText>
                 <rich:message />
 
@@ -49,49 +51,97 @@
                     <f:validateLength minimum="2"/>
                 </h:inputText>
                 <rich:message for="username" ajaxRendered="true"/>
-                
+
                 <h:outputText value="password:" />
-                
+
                 <h:inputSecret label="password" id="password" required="true" value="#{teacherBean.teacher.password}" validatorMessage="Invalid password(at least 4 characters needed)">
                     <f:validateLength minimum="4" maximum="20"  />
                 </h:inputSecret>
                 <rich:message ajaxRendered="true" for="password"/>
-                
+
 
                 <h:outputText value=""/>
                 <h:commandButton value="ADD" action="#{teacherBean.addTeacherInformation()}"/>
-                
-                
-                
 
-                
+
+
+
+
 
 
             </h:panelGrid>
-             <rich:dataTable value="#{teacherBean.teachers}" var="teacher" iterationStatusVar="it" id="table" rows="15">
+            <a4j:status onstart="#{rich:component('statPane')}.show()" onstop="#{rich:component('statPane')}.hide()" />
+            <rich:dataTable value="#{teacherBean.teachers}" var="teacher" iterationStatusVar="it" id="table" rows="15">
                 <rich:column>
-                <f:facet name="header">S. No.</f:facet>
-                #{it.index+1}
-            </rich:column>
-            <rich:column>
-                <f:facet name="header">First Name</f:facet>
-                <h:outputText value="#{teacher.firstName}" />
-            </rich:column>
-                 <rich:column>
-                <f:facet name="header">Last Name</f:facet>
-                <h:outputText value="#{teacher.lastName}" />
-            </rich:column>
-                 
-                 <rich:column>
-                <f:facet name="header">email</f:facet>
-                <h:outputText value="#{teacher.email}" />
-            </rich:column>
-                 <rich:column>
-                <f:facet name="header">contact Number</f:facet>
-                <h:outputText value="#{teacher.contactNumber}" />
-            </rich:column>
-        </rich:dataTable>
+                    <f:facet name="header">S. No.</f:facet>
+                        #{it.index+1}
+                </rich:column>
+                <rich:column>
+                    <f:facet name="header">First Name</f:facet>
+                    <h:outputText value="#{teacher.firstName}" />
+                </rich:column>
+                <rich:column>
+                    <f:facet name="header">Last Name</f:facet>
+                    <h:outputText value="#{teacher.lastName}" />
+                </rich:column>
+
+                <rich:column>
+                    <f:facet name="header">email</f:facet>
+                    <h:outputText value="#{teacher.email}" />
+                </rich:column>
+                <rich:column>
+                    <f:facet name="header">contact Number</f:facet>
+                    <h:outputText value="#{teacher.contactNumber}" />
+                </rich:column>
+                <rich:column>
+                    <f:facet name="header">Action</f:facet>
+                    <a4j:commandLink styleClass="no-decor" render="editGrid" execute="@this"
+                                     oncomplete="#{rich:component('editTeacherPane')}.show()">
+                        <h:graphicImage value="resources/images/edit.png" alt="edit" width="20" height="18"/>
+                        <a4j:param value="#{it.index}" assignTo="#{teacherBean.currentTeacherIndex}" />
+                        <f:setPropertyActionListener target="#{teacherBean.teacher}" value="#{teacher}" />
+                    </a4j:commandLink>
+
+                    <a4j:commandLink styleClass="no-decor" render="editGrid" execute="@this"
+                                     oncomplete="#{rich:component('editTeacherPane')}.show()">
+                        <h:graphicImage value="resources/images/delete.png" alt="edit" width="20" height="18"/>
+                        <a4j:param value="#{it.index}" assignTo="#{teacherBean.currentTeacherIndex}" />
+                        <f:setPropertyActionListener target="#{teacherBean.teacher}" value="#{teacher}" />
+                    </a4j:commandLink>
+                </rich:column>
+            </rich:dataTable>
         </rich:panel>
         
+        
+        <rich:popupPanel header="Edit Panel" id="editTeacherPane" domElementAttachment="parent" width="400" height="170">
+            <h:panelGrid columns="2" id="editGrid">
+                <h:outputText value="teacherName:" />
+                <h:inputText value="#{teacherBean.teacher.fullName}" id="nameid" >
+                </h:inputText>
+                
+                <h:outputText value="email" />
+                <h:inputText value="#{teacherBean.teacher.email}" id="emailid" >
+                </h:inputText>
+                <h:outputText value="contactNumber" />
+                <h:inputText value="#{teacherBean.teacher.contactNumber}" id="contactid" >
+                </h:inputText>
+                
+                <h:outputText value="userName" />
+                <h:inputText value="#{teacherBean.teacher.userName}" id="usernameid" >
+                </h:inputText>
+                
+                <h:outputText value="password" />
+                <h:inputText value="#{teacherBean.teacher.password}" id="passwordid" >
+                </h:inputText>
+                
+
+            </h:panelGrid>
+            <a4j:commandButton value="Update" action="#{settingBean.checkUpdateSetting()}" render="table" execute="editPane"
+                               oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editPane')}.hide();}" />
+            <a4j:commandButton value="Cancel" onclick="#{rich:component('editPane')}.hide();
+                    return false;" />
+        </rich:popupPanel>
+
+
     </ui:define>   
 </ui:composition>
