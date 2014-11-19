@@ -22,6 +22,16 @@ public class TeacherBean {
     List<Teacher> teachers=new ArrayList<>();
     Teacher teacher=new Teacher();
     TeacherDB teacherDB=new TeacherDB();
+    private String msg="";
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+    
    
     
     public String showTeacherList(){
@@ -32,7 +42,17 @@ public class TeacherBean {
         System.out.println("INSERT TEACHER");
         TeacherDB teacherDB=new TeacherDB();
        boolean checkSubmit= teacherDB.insertTeacher(teacher);
-        System.out.println(">>>>>>>>>>>>>>>");
+       if(checkSubmit)
+       {
+           msg="Data saved successfully";
+           
+           
+       }
+       else
+       {
+           msg="This entry has some error";
+       }
+       System.out.println(">>>>>>>>>>>>>>>");
        setTeacherInformation();
         
     }
