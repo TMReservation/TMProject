@@ -16,20 +16,12 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean(name = "userBean")
 @SessionScoped
-public class UserBean {
-   // @EJB
-    //First first;
-    //@EJB
-    //FirstLocal firstLocal;
-    //List<Test> tests;
-   
+public class UserBean {   
     public String settingPage(){
         System.out.println("Setting here");
         return "setting";
     }
     public String redirectHomePage(){
-        System.out.println(">>>>>>>>>");
-        //firstLocal.getAllProjectTest();
         System.out.println("REDIRECT HERE");
         return "index";
     }
