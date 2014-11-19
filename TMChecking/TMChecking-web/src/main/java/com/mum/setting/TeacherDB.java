@@ -42,7 +42,8 @@ public class TeacherDB {
     public boolean insertTeacher(Teacher teacher) {
         try {
             System.out.println("INSERT HERE>>");
-            String sql = "INSERT INTO teacher VALUES(default,'" + teacher.getFirstName() + "','" + teacher.getMiddleName() + "','" + teacher.getLastName() + "','" +teacher.getEmail()+"','"+teacher.getContactNumber()+"','"+teacher.getUserName()+"','"+teacher.getPassword()+"')";
+            String sql = "INSERT INTO teacher VALUES(default,'" + teacher.getFirstName() + "','" + teacher.getMiddleName() + "','" + teacher.getLastName() + "','" +teacher.getEmail()+"','"+teacher.getContactNumber()+"','"+teacher.getUserName()+"','"+teacher.getPassword()+"','0')";
+            System.out.println("AFTER SQL");
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();

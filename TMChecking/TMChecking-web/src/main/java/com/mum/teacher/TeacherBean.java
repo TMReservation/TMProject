@@ -9,7 +9,6 @@ import com.mum.setting.TeacherDB;
 import com.tm.entities.Teacher;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -32,8 +31,21 @@ public class TeacherBean {
     public void addTeacherInformation(){
         System.out.println("INSERT TEACHER");
         TeacherDB teacherDB=new TeacherDB();
-       boolean checkSubmit= teacherDB.insertTeacher(teacher);  
+       boolean checkSubmit= teacherDB.insertTeacher(teacher);
+        System.out.println(">>>>>>>>>>>>>>>");
+       setTeacherInformation();
         
+    }
+    public void setTeacherInformation()
+    {
+        teacher.setFirstName("");
+        teacher.setMiddleName(null);
+        teacher.setLastName(null);
+        teacher.setEmail(null);
+        teacher.setUserName(null);
+        teacher.setPassword(null);
+        teacher.setContactNumber(Integer.parseInt(""));
+        teacher.setId(null);
     }
     
     
@@ -65,41 +77,5 @@ public class TeacherBean {
         this.teacher = teacher;
     }
     
-    
-   
-    
-//    public String showTeacherList(){
-//        System.out.println("IN TEACHER BEAN>>>");
-//        return "setting";
-//    }
-//    public void addTeacherInformation(){
-//        System.out.println("INSERT TEACHER");
-//        TeacherDB teacherDB=new TeacherDB();
-//        teacherDB.insertTeacher(teacher);      
-//    }
-//    public String addTeacher()
-//    {         
-//        teachers=new ArrayList<>();
-//        
-//        teachers=teacherDB.getTeacherList();       
-//        return "addTeacher";
-//    }
-//
-//    public List<Teacher> getTeachers() {
-//        return teachers;
-//    }
-
-//    public void setTeachers(List<Teacher> teachers) {
-//        this.teachers = teachers;
-//    }
-//
-//    public Teacher getTeacher() {
-//        return teacher;
-//    }
-//
-//    public void setTeacher(Teacher teacher) {
-//        this.teacher = teacher;
-//    }
-//    
     
 }
