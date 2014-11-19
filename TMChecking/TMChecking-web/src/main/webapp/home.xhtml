@@ -3,16 +3,28 @@
                 xmlns:rich="http://richfaces.org/rich" template="/template/layout.xhtml">
 
     <ui:define name="content">
-        <h2>This is home      content</h2> 
-       
-        <h:commandLink action="#{teacherBean.addTeacher()}">
-             <h:graphicImage  value="resources/images/teacher.png" alt="Teacher"  width="100" height="75" />
-        </h:commandLink>
-        <h:commandLink action="#{studentBean.addStudent()}">
-        <h:graphicImage  value="resources/images/student.png" alt="Student"  width="100" height="75" />
-        </h:commandLink>
-        <h:commandLink action="#{settingBean.showSettingList()}">
-             <h:graphicImage  value="resources/images/setting.png" alt="Setting"  width="100" height="75" />
-         </h:commandLink>
+        
+        <table id="homeIcons">
+            <tr>
+                <td>
+                    <h:commandLink class="btnTeacher" action="#{teacherBean.addTeacher()}">
+                        <span>Teacher</span>
+                    </h:commandLink>
+                </td>
+                <td>
+                    <h:commandLink class="btnStudent" action="#{studentBean.addStudent()}">
+                        <span>Student</span>
+                    </h:commandLink>
+                </td>
+                <td>
+                    <h:commandLink class="btnSetting" action="#{settingBean.showSettingList()}">
+                        <span>Setting</span>
+                    </h:commandLink>
+                </td>
+            </tr>
+        </table>
+
+
+
     </ui:define>    
 </ui:composition>

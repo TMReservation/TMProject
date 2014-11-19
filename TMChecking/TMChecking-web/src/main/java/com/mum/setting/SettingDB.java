@@ -6,6 +6,7 @@
 package com.mum.setting;
 
 import com.database.connection.DatabaseSetting;
+import com.tm.entities.Setting;
 import com.tm.entities.Teacher;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,13 +19,13 @@ import java.util.List;
  *
  * @author sunil
  */
-public class TeacherDB {
+public class SettingDB {
 
     private Connection con = null;
     Statement stmt = null;
     DatabaseSetting databaseSetting = new DatabaseSetting();
 
-    public TeacherDB() {
+    public SettingDB() {
         getConfigConnection();
     }
 
@@ -39,32 +40,19 @@ public class TeacherDB {
         return con;
     }
 
-    public boolean insertTeacher(Teacher teacher) {
-        try {
-            System.out.println("INSERT HERE>>");
-            String sql = "INSERT INTO teacher VALUES(default,'" + teacher.getFirstName() + "','" + teacher.getLastName() + "','" + teacher.getMiddleName() + "')";
-            stmt.executeUpdate(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Error while adding value");
-            return false;
-        }
-        return true;
-    }
-
-    public List<Teacher> getTeacherList() {
+    public List<Setting> getSettingList() {
         try {
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM teacher");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM setting order by id desc");
             System.out.println("RS >>" + rs);
-            List<Teacher> teachers =new ArrayList<>();
+            List<Setting> settings = new ArrayList<>();
             while (rs.next()) {
-                Teacher teacher=new Teacher();                
-                teacher.setFirstName(rs.getString("first_name"));
-                teachers.add(teacher);
+                Setting setting = new Setting();
+                setting.setId(rs.getInt("id"));
+                setting.setRole(rs.getString("role"));
+                settings.add(setting);
             }
-            
-            return teachers;
+            return settings;
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
@@ -72,5 +60,4 @@ public class TeacherDB {
         }
         return null;
     }
-
 }
