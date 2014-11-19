@@ -3,12 +3,15 @@
                 xmlns:rich="http://richfaces.org/rich" template="/template/layout.xhtml">    
     <ui:define name="content">
         <h2>Add Teacher</h2>
+        
+        <h:button value="BACK" outcome="home.xhtml" />
         <h:outputText value="#{teacherBean.msg}" style="color:green"/>
         <rich:panel>
             
             <f:facet name="header">
                 <h:outputText value="Teacher Info Entry"></h:outputText>
             </f:facet>
+            
             
             <h:panelGrid columns="3">
   
@@ -57,6 +60,8 @@
 
                 <h:outputText value=""/>
                 <h:commandButton value="ADD" action="#{teacherBean.addTeacherInformation()}"/>
+                
+                
                 
 
                 
