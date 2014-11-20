@@ -26,7 +26,7 @@ public class Teacher implements Serializable {
     private String fullName;
 
     public String getFullName() {
-        return fullName;
+        return "getFirstName()+getMiddleName()+getLastName()";
     }
 
     public void setFullName(String fullName) {
