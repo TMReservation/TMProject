@@ -10,8 +10,8 @@ package com.mum.teacher;
  * @author sunil
  */
 import com.mum.setting.TeacherDB;
+import com.tm.entities.TMChecking;
 import com.tm.entities.Teacher;
-import com.tmchecking.UserBean;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -43,7 +43,8 @@ public class CalendarModel implements CalendarDataModel {
     private ArrayList<SelectItem> selectTeacherList = new ArrayList<>();
     List<Teacher> teachers = new ArrayList<>();
     TeacherDB teacherDB = new TeacherDB();
-    private Map<Integer, String> availableItems; 
+    private Map<Integer, String> availableItems;
+    List<TMChecking> tmChecking = new ArrayList<>();
 
     public Map<Integer, String> getAvailableItems() {
         return availableItems;
@@ -52,9 +53,6 @@ public class CalendarModel implements CalendarDataModel {
     public void setAvailableItems(Map<Integer, String> availableItems) {
         this.availableItems = availableItems;
     }
-
-    
-    
 
     public String addAppointmentStudent() {
         availableItems = new LinkedHashMap<Integer, String>();
@@ -67,10 +65,15 @@ public class CalendarModel implements CalendarDataModel {
             teacherItem = new SelectItem(t.getId(), t.getFirstName() + t.getLastName());
             selectTeacherList.add(teacherItem);
         }
-        
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        int studentId = (int) session.getAttribute("userId");
+        tmChecking = teacherDB.getTMCheckingList(studentId);
+        System.out.println("TM CHECKNING LIST SIZE " + tmChecking.size());
+
         return "addAppointmentStudent";
     }
-     public void valueChangedForTeacher(AjaxBehaviorEvent event) {
+
+    public void valueChangedForTeacher(AjaxBehaviorEvent event) {
         System.out.println("EVENT  " + event);
         System.out.println("User ID IS " + selectTeacherId);
     }
@@ -110,23 +113,21 @@ public class CalendarModel implements CalendarDataModel {
         return modelItems;
     }
 
-    public String addTMCheckingSchedule() {      
-        int studentId=9;
-        int pending=0;
-        int enable=0;
-        if(enabledTM==true){
-            enable=1;
-        }else{
-            enable=0;
+    public String addTMCheckingSchedule() {
+        int pending = 0;
+        int enable = 0;
+        if (enabledTM == true) {
+            enable = 1;
+        } else {
+            enable = 0;
         }
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-        System.out.println("NAME IS "+session.getAttribute("chosenUsername"));
-        System.out.println(">>>>>>");
-        boolean checkTMStatus=teacherDB.saveTMChecking(currentDate,selectTeacherId,studentId,enable,pending);
-        if(checkTMStatus==true){
-            selectTeacherId="";
-        }else{
-            
+        int studentId = (int) session.getAttribute("userId");
+        boolean checkTMStatus = teacherDB.saveTMChecking(currentDate, selectTeacherId, studentId, enable, pending);
+        if (checkTMStatus == true) {
+            selectTeacherId = "";
+        } else {
+
         }
         return "";
     }
@@ -152,8 +153,6 @@ public class CalendarModel implements CalendarDataModel {
         this.selectTeacherId = selectTeacherId;
     }
 
-   
-
     public boolean isEnabledTM() {
         return enabledTM;
     }
@@ -169,6 +168,12 @@ public class CalendarModel implements CalendarDataModel {
     public void setSelectTeacherList(ArrayList<SelectItem> selectTeacherList) {
         this.selectTeacherList = selectTeacherList;
     }
-    
 
+    public List<TMChecking> getTmChecking() {
+        return tmChecking;
+    }
+
+    public void setTmChecking(List<TMChecking> tmChecking) {
+        this.tmChecking = tmChecking;
+    }
 }

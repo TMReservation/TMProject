@@ -70,7 +70,6 @@ public class SettingDB {
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM teacher where id='" + id + "'");
             while (rs.next()) {              
-                System.out.println(" NAME IS: " + rs.getString("first_name") + "lastName " + rs.getString("last_name"));
                 teacher.setFirstName(rs.getString("first_name"));
                 teacher.setLastName(rs.getString("last_name"));                
             }

@@ -53,26 +53,11 @@ public class UserBean {
         DatabaseSetting databaseSetting = new DatabaseSetting();
         String checkLoginStatus = databaseSetting.checkLogin(username, password, userTypes);
 
-        System.out.println("login name is " + databaseSetting.getUsername());
-        System.out.println("checklogin name is " + checkLoginStatus);
         if (databaseSetting.getUsername() != null) {
-            username = databaseSetting.getUsername();
-
+            username = databaseSetting.getUsername();            
             HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-            session.setAttribute("chosenUsername", username);
-            System.out.println("NAME IS "+session.getAttribute("chosenUsername"));
+            session.setAttribute("userId", databaseSetting.getId());
             
-           
-
-//            FacesContext facesContext = FacesContext.getCurrentInstance();
-//            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
-//            Enumeration e = session.getAttributeNames();
-//            while (e.hasMoreElements()) {
-//                String attr = (String) e.nextElement();
-//                System.err.println("      attr  = " + attr);
-//                Object value = session.getValue(attr);
-//                System.err.println("      value = " + value);
-//            }
             id = databaseSetting.getId();
             if (checkLoginStatus.equalsIgnoreCase("student")) {
                 showStudent = true;

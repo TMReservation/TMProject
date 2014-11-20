@@ -63,7 +63,6 @@ public class TeacherDB {
             ResultSet rs = stmt.executeQuery("SELECT * FROM teacher order by id desc");
             List<Teacher> teachers = new ArrayList<>();
             while (rs.next()) {
-                System.out.println("NAME IS " + rs.getString("first_name"));
                 Teacher teacher = new Teacher();
                 teacher.setId(rs.getInt("id"));
                 teacher.setFirstName(rs.getString("first_name"));
@@ -101,30 +100,46 @@ public class TeacherDB {
         return true;
 
     }
-//    public List<TMChecking> getTMChecking() {
-//        try {
-//            stmt = con.createStatement();
-//            ResultSet rs = stmt.executeQuery("SELECT * FROM teacher order by id desc");
-//            List<Teacher> teachers = new ArrayList<>();
-//            while (rs.next()) {
-//                System.out.println("NAME IS " + rs.getString("first_name"));
-//                Teacher teacher = new Teacher();
-//                teacher.setId(rs.getInt("id"));
-//                teacher.setFirstName(rs.getString("first_name"));
-//                teacher.setMiddleName(rs.getString("middle_name"));
-//                teacher.setLastName(rs.getString("last_name"));
-//                teacher.setEmail(rs.getString("email"));
-//                teacher.setContactNumber(rs.getInt("contact_number"));
-//                teacher.setUserName(rs.getString("user_name"));
-//                teacher.setPassword(rs.getString("password"));
-//                teachers.add(teacher);
-//            }
-//            return teachers;
-//        } catch (SQLException ex) {
-//            System.out.println("SQLException: " + ex.getMessage());
-//            System.out.println("SQLState: " + ex.getSQLState());
-//            System.out.println("VendorError: " + ex.getErrorCode());
-//        }
-//        return null;
-//    }
+    public List<TMChecking> getTMCheckingList(int id) {
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM teamchecking where student_id='" + id + "' order by id desc");
+            List<TMChecking> tMCheckings = new ArrayList<>();
+            while (rs.next()) {
+                System.out.println("NAME IS " + rs.getInt("teacher_id"));                
+                TMChecking tMChecking = new TMChecking();
+                Teacher t = findByTeacherId(rs.getInt("teacher_id"));
+                tMChecking.setId(rs.getInt("id"));
+                tMChecking.setChecked(rs.getInt("checked"));
+                tMChecking.setPending(rs.getInt("pending"));
+                tMChecking.setCheckTime(rs.getString("checking_time"));
+                tMChecking.setTeacherId(t.getFirstName()+t.getLastName());
+                tMCheckings.add(tMChecking);
+            }
+            return tMCheckings;
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+        return null;
+    }
+    public Teacher findByTeacherId(int id) {
+        Teacher teacher = new Teacher();
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM teacher where id='" + id + "'");
+            while (rs.next()) {
+                System.out.println(" NAME IS: " + rs.getString("first_name") + "lastName " + rs.getString("last_name"));
+                teacher.setFirstName(rs.getString("first_name"));
+                teacher.setLastName(rs.getString("last_name"));
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+        return teacher;
+
+    }
 }
