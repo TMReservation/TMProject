@@ -106,7 +106,13 @@ public class StudentBean {
            	
         return "";
     }
-   
+     
+     public String addAppointmentStudent(){
+         
+         return "addAppointmentStudent";
+     }
+
+    
      
     public List<Student> getStudents() {
         return students;
