@@ -10,11 +10,13 @@ import com.database.connection.DatabaseSetting;
 import com.tm.entities.Login;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Enumeration;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -52,10 +54,26 @@ public class UserBean {
         String checkLoginStatus = databaseSetting.checkLogin(username, password, userTypes);
 
         System.out.println("login name is " + databaseSetting.getUsername());
-         System.out.println("checklogin name is " + checkLoginStatus);
+        System.out.println("checklogin name is " + checkLoginStatus);
         if (databaseSetting.getUsername() != null) {
-            username=databaseSetting.getUsername();
-            id=databaseSetting.getId();
+            username = databaseSetting.getUsername();
+
+            HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+            session.setAttribute("chosenUsername", username);
+            System.out.println("NAME IS "+session.getAttribute("chosenUsername"));
+            
+           
+
+//            FacesContext facesContext = FacesContext.getCurrentInstance();
+//            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+//            Enumeration e = session.getAttributeNames();
+//            while (e.hasMoreElements()) {
+//                String attr = (String) e.nextElement();
+//                System.err.println("      attr  = " + attr);
+//                Object value = session.getValue(attr);
+//                System.err.println("      value = " + value);
+//            }
+            id = databaseSetting.getId();
             if (checkLoginStatus.equalsIgnoreCase("student")) {
                 showStudent = true;
                 showIT = false;
@@ -157,6 +175,5 @@ public class UserBean {
     public void setId(int id) {
         this.id = id;
     }
-    
 
 }

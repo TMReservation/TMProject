@@ -11,6 +11,7 @@ package com.mum.teacher;
  */
 import com.mum.setting.TeacherDB;
 import com.tm.entities.Teacher;
+import com.tmchecking.UserBean;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -21,8 +22,10 @@ import java.util.Map;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpSession;
 
 import org.richfaces.model.CalendarDataModel;
 import org.richfaces.model.CalendarDataModelItem;
@@ -116,6 +119,9 @@ public class CalendarModel implements CalendarDataModel {
         }else{
             enable=0;
         }
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        System.out.println("NAME IS "+session.getAttribute("chosenUsername"));
+        System.out.println(">>>>>>");
         boolean checkTMStatus=teacherDB.saveTMChecking(currentDate,selectTeacherId,studentId,enable,pending);
         if(checkTMStatus==true){
             selectTeacherId="";
