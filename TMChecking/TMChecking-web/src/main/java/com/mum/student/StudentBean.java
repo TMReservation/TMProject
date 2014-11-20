@@ -28,8 +28,7 @@ public class StudentBean {
     private int currentStudentIndex;
     private ArrayList<SelectItem> selectProgram;
     private ArrayList<SelectItem> selectBatch;
-
-    
+ 
 
     public int getCurrentStudentIndex() {
         return currentStudentIndex;
@@ -38,9 +37,7 @@ public class StudentBean {
     public void setCurrentStudentIndex(int currentStudentIndex) {
         this.currentStudentIndex = currentStudentIndex;
     }
-   
-
-    
+      
     public void addStudentInformation() {
         System.out.println("INSERT Student");
         System.out.println("SELECT VALUE " + student.getTempBatch());
@@ -56,10 +53,7 @@ public class StudentBean {
         }
     }
 
-   
-   
-   
-   
+     
    public void clear(){
        student.setBatch("");
        student.setContactnumber(0);
@@ -112,8 +106,7 @@ public class StudentBean {
            	
         return "";
     }
-
-    
+   
      
     public List<Student> getStudents() {
         return students;
@@ -126,6 +119,7 @@ public class StudentBean {
     public String addStudent(){
         msg="";
         students=studentDB.getStudentList();
+        
         return "addStudent";
     }
 

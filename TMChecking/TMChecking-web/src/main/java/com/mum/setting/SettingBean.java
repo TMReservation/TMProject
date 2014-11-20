@@ -12,6 +12,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -25,6 +27,7 @@ public class SettingBean implements Serializable{
     private Setting setting;
     private SettingDB settingDB=new SettingDB();
     
+  
     public String showSettingList(){               
         settings=settingDB.getSettingList();
         return "setting";

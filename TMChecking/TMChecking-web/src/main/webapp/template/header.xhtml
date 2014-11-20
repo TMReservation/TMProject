@@ -3,14 +3,22 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      >   
+          
+      xmlns:h="http://xmlns.jcp.org/jsf/html">   
     <body>
 	    ALL TAGS ABOVE THIS LINE WILL BE REMOVED BY JSF
             <ui:composition class="header"> 
                 <a href="./"><div class="logo"></div></a>
 		<h1>TM Reservation System</h1> 
-                <a class="logout" href="#">Logout</a>
-                <a class="viewProfile" href="#">View Profile</a>
+                <!--<a class="logout" href="#">Logout</a>-->
+                
+                <h:commandLink rendered="#{userBean.disabledHeader}" immediate="true" class="logout" value="Logout" action="#{userBean.logout()}" >
+                </h:commandLink>
+                <h:commandLink rendered="#{userBean.disabledHeader}" immediate="true" class="viewProfile" 
+                               value="View Profile" >
+                </h:commandLink>
+ 
+                <!--<a class="viewProfile" href="#">View Profile</a>-->
 	    </ui:composition>
 	    ALL TAGS BELOW THIS LINE WILL BE REMOVED BY JSF
     </body>
