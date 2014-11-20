@@ -108,7 +108,7 @@ public class StudentBean {
     }
      
      public String addAppointmentStudent(){
-         
+         System.out.println("APPOINTMENT");
          return "addAppointmentStudent";
      }
 
@@ -125,7 +125,8 @@ public class StudentBean {
     public String addStudent(){
         msg="";
         students=studentDB.getStudentList();
-        
+        initiateProgram();
+        listBatch();
         return "addStudent";
     }
 

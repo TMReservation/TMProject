@@ -3,9 +3,47 @@
                 xmlns:rich="http://richfaces.org/rich" template="/template/layout.xhtml">
 
     <ui:define name="content">
-        
-        Add appointment
 
+        Add appointment
+        <h:outputStylesheet>
+            .bdc {
+            background-color: gray;
+            }
+
+            .wdc {
+            font-weight: bold;
+            font-style: italic;
+            }
+        </h:outputStylesheet>
+        <rich:tabPanel switchType="client">
+            <rich:tab header="Add Appointment">
+                <h:panelGrid columns="1">
+                    <rich:calendar value="#{calendarModel.currentDate}" mode="ajax" boundaryDatesMode="scroll" dataModel="#{calendarModel}">
+                        <f:ajax render="@this"/>
+                    </rich:calendar>
+                    <h:commandButton value="Add Schedule" action="#{calendarModel.addTMCheckingSchedule()}"/>
+                </h:panelGrid>
+            </rich:tab>
+
+
+            <rich:tab header="Student Appointment List">
+                <rich:dataTable value="#{teacherBean.teachers}" var="teacher" iterationStatusVar="it" id="table" rows="15">
+                    <rich:column>
+                        <f:facet name="header">S. No.</f:facet>
+                            #{it.index+1}
+                    </rich:column>
+                    <rich:column>
+                        <f:facet name="header">First Name</f:facet>
+                        <h:outputText value="#{teacher.firstName}" />
+                    </rich:column>
+                    <rich:column>
+                        <f:facet name="header">Last Name</f:facet>
+                        <h:outputText value="#{teacher.lastName}" />
+                    </rich:column>
+
+                </rich:dataTable>
+            </rich:tab>
+        </rich:tabPanel>
 
 
     </ui:define>    
