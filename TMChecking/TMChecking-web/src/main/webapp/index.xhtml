@@ -5,7 +5,7 @@
     <ui:define name="content">  
         <div style="color: brown"><h:outputText id="msg" value="#{userBean.msg}" /></div>
         <div align="center">
-        <rich:panel header="Login Pannel" style="width:500px">
+            <rich:panel header="Login Pannel" style="width:354px">
                 <h:panelGrid columns="3">                    
                     <h:outputText value="User Name:" />
                     <h:inputText value="#{userBean.username}" id="username" />
@@ -13,10 +13,17 @@
                     <h:outputText value="Password:" />
                     <h:inputSecret value="#{userBean.password}" id="password" />
                     <rich:message for="password" />
+                    <h:outputText value="Types" />
+                    <h:selectOneMenu value="#{userBean.userTypes}" style="width: 135px">
+                        <f:selectItem itemLabel="Select" itemValue="Select" />
+                        <f:selectItem itemLabel="Student" itemValue="Student" />
+                        <f:selectItem itemLabel="Teacher" itemValue="Teacher" />
+                        <f:selectItem itemLabel="IT" itemValue="It" />
+                    </h:selectOneMenu>
                 </h:panelGrid>
-            <h:commandButton value="Login" action="#{userBean.checkLogin()}" >
-            </h:commandButton>
+                <h:commandButton value="Login" action="#{userBean.checkLogin()}" >
+                </h:commandButton>
             </rich:panel>
         </div>    
-        </ui:define>    
+    </ui:define>    
 </ui:composition>

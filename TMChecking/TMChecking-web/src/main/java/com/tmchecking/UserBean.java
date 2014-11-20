@@ -6,6 +6,8 @@
 package com.tmchecking;
 
 //import com.team.bean.FirstLocal;
+import com.database.connection.DatabaseSetting;
+import com.tm.entities.Login;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
@@ -28,9 +30,10 @@ public class UserBean {
     private String username = "";
     private String password = "";
     private String msg = "";
-    private boolean disabledHeader=false;
-    
-    
+    private boolean disabledHeader = false;
+    private String userTypes = "";
+    Login login = new Login();
+    private int id;
 
     public void logout() throws IOException {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
@@ -39,25 +42,43 @@ public class UserBean {
     }
 
     public String checkLogin() {
+        System.out.println("User type is " + userTypes);
         msg = "";
-        if (username.equalsIgnoreCase("student") && (password.equalsIgnoreCase("student"))) {
-            showStudent = true;
-            showIT = false;
-            showTeacher = false;
-        } else if (username.equalsIgnoreCase("teacher") && (password.equalsIgnoreCase("teacher"))) {
-            showStudent = false;
-            showIT = false;
-            showTeacher = true;
-        } else if (username.equalsIgnoreCase("it") && (password.equalsIgnoreCase("it"))) {
-            showStudent = true;
-            showIT = true;
-            showTeacher = true;
+        if (userTypes.equalsIgnoreCase("select")) {
+            msg = "Please,select types";
+            return "index";
+        }
+        DatabaseSetting databaseSetting = new DatabaseSetting();
+        String checkLoginStatus = databaseSetting.checkLogin(username, password, userTypes);
+
+        System.out.println("login name is " + databaseSetting.getUsername());
+         System.out.println("checklogin name is " + checkLoginStatus);
+        if (databaseSetting.getUsername() != null) {
+            username=databaseSetting.getUsername();
+            id=databaseSetting.getId();
+            if (checkLoginStatus.equalsIgnoreCase("student")) {
+                showStudent = true;
+                showIT = false;
+                showTeacher = false;
+            } else if (checkLoginStatus.equalsIgnoreCase("teacher")) {
+                showStudent = false;
+                showIT = false;
+                showTeacher = true;
+            } else if (checkLoginStatus.equalsIgnoreCase("it")) {
+                showStudent = true;
+                showIT = true;
+                showTeacher = true;
+            } else {
+                msg = "Invalid username and password";
+                return "index";
+            }
         } else {
             msg = "Invalid username and password";
             return "index";
         }
+
         msg = "";
-        disabledHeader=true;
+        disabledHeader = true;
         return "home";
     }
 
@@ -120,5 +141,22 @@ public class UserBean {
     public void setDisabledHeader(boolean disabledHeader) {
         this.disabledHeader = disabledHeader;
     }
+
+    public String getUserTypes() {
+        return userTypes;
+    }
+
+    public void setUserTypes(String userTypes) {
+        this.userTypes = userTypes;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 
 }

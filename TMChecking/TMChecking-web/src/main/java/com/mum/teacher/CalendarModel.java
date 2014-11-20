@@ -64,6 +64,7 @@ public class CalendarModel implements CalendarDataModel {
             teacherItem = new SelectItem(t.getId(), t.getFirstName() + t.getLastName());
             selectTeacherList.add(teacherItem);
         }
+        
         return "addAppointmentStudent";
     }
      public void valueChangedForTeacher(AjaxBehaviorEvent event) {
@@ -98,7 +99,6 @@ public class CalendarModel implements CalendarDataModel {
                 modelItem.setEnabled(false);
                 modelItem.setStyleClass(WEEKEND_DAY_CLASS);
             } else {
-                //System.out.println("DATE IS>> " + dateArray[i]);
                 modelItem.setEnabled(true);
                 modelItem.setStyleClass("");
             }
@@ -107,10 +107,21 @@ public class CalendarModel implements CalendarDataModel {
         return modelItems;
     }
 
-    public String addTMCheckingSchedule() {
-        System.out.println("Current date is " + currentDate);
-        System.out.println("Teacher id is " + selectTeacherId);
-        System.out.println("Enabled id is " + enabledTM);
+    public String addTMCheckingSchedule() {      
+        int studentId=9;
+        int pending=0;
+        int enable=0;
+        if(enabledTM==true){
+            enable=1;
+        }else{
+            enable=0;
+        }
+        boolean checkTMStatus=teacherDB.saveTMChecking(currentDate,selectTeacherId,studentId,enable,pending);
+        if(checkTMStatus==true){
+            selectTeacherId="";
+        }else{
+            
+        }
         return "";
     }
 

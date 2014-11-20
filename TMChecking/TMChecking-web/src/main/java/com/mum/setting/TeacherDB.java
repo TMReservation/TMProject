@@ -6,12 +6,16 @@
 package com.mum.setting;
 
 import com.database.connection.DatabaseSetting;
+import com.tm.entities.TMChecking;
 import com.tm.entities.Teacher;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,7 +46,7 @@ public class TeacherDB {
     public boolean insertTeacher(Teacher teacher) {
         try {
             System.out.println("INSERT HERE>>");
-            String sql = "INSERT INTO teacher VALUES(default,'" + teacher.getFirstName() + "','" + teacher.getMiddleName() + "','" + teacher.getLastName() + "','" +teacher.getEmail()+"','"+teacher.getContactNumber()+"','"+teacher.getUserName()+"','"+teacher.getPassword()+"',0)";
+            String sql = "INSERT INTO teacher VALUES(default,'" + teacher.getFirstName() + "','" + teacher.getMiddleName() + "','" + teacher.getLastName() + "','" + teacher.getEmail() + "','" + teacher.getContactNumber() + "','" + teacher.getUserName() + "','" + teacher.getPassword() + "',0)";
             System.out.println("AFTER SQL");
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
@@ -57,10 +61,10 @@ public class TeacherDB {
         try {
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM teacher order by id desc");
-            List<Teacher> teachers =new ArrayList<>();
+            List<Teacher> teachers = new ArrayList<>();
             while (rs.next()) {
-                System.out.println("NAME IS "+rs.getString("first_name"));
-                Teacher teacher=new Teacher();     
+                System.out.println("NAME IS " + rs.getString("first_name"));
+                Teacher teacher = new Teacher();
                 teacher.setId(rs.getInt("id"));
                 teacher.setFirstName(rs.getString("first_name"));
                 teacher.setMiddleName(rs.getString("middle_name"));
@@ -70,7 +74,7 @@ public class TeacherDB {
                 teacher.setUserName(rs.getString("user_name"));
                 teacher.setPassword(rs.getString("password"));
                 teachers.add(teacher);
-            }  
+            }
             return teachers;
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
@@ -80,4 +84,47 @@ public class TeacherDB {
         return null;
     }
 
+    public boolean saveTMChecking(Date currentDate, String selectTeacherId, int studentId, int enabledTM, int pending) {
+        try {
+            System.out.println("INSERT TM>>");
+            Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String s = formatter.format(currentDate);
+            System.out.println("DATE IS "+s);
+            String sql = "INSERT INTO teamchecking VALUES(default,'" + s + "','" + selectTeacherId + "','" + studentId + "','" + enabledTM + "','" + pending + "')";
+            System.out.println("AFTER SQL");
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error while adding value");
+            return false;
+        }
+        return true;
+
+    }
+//    public List<TMChecking> getTMChecking() {
+//        try {
+//            stmt = con.createStatement();
+//            ResultSet rs = stmt.executeQuery("SELECT * FROM teacher order by id desc");
+//            List<Teacher> teachers = new ArrayList<>();
+//            while (rs.next()) {
+//                System.out.println("NAME IS " + rs.getString("first_name"));
+//                Teacher teacher = new Teacher();
+//                teacher.setId(rs.getInt("id"));
+//                teacher.setFirstName(rs.getString("first_name"));
+//                teacher.setMiddleName(rs.getString("middle_name"));
+//                teacher.setLastName(rs.getString("last_name"));
+//                teacher.setEmail(rs.getString("email"));
+//                teacher.setContactNumber(rs.getInt("contact_number"));
+//                teacher.setUserName(rs.getString("user_name"));
+//                teacher.setPassword(rs.getString("password"));
+//                teachers.add(teacher);
+//            }
+//            return teachers;
+//        } catch (SQLException ex) {
+//            System.out.println("SQLException: " + ex.getMessage());
+//            System.out.println("SQLState: " + ex.getSQLState());
+//            System.out.println("VendorError: " + ex.getErrorCode());
+//        }
+//        return null;
+//    }
 }
