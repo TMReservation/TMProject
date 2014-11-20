@@ -56,11 +56,12 @@ public class TeacherDB {
     public List<Teacher> getTeacherList() {
         try {
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM teacher");
-            System.out.println("RS >>" + rs);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM teacher order by id desc");
             List<Teacher> teachers =new ArrayList<>();
             while (rs.next()) {
-                Teacher teacher=new Teacher();                
+                System.out.println("NAME IS "+rs.getString("first_name"));
+                Teacher teacher=new Teacher();     
+                teacher.setId(rs.getInt("id"));
                 teacher.setFirstName(rs.getString("first_name"));
                 teacher.setMiddleName(rs.getString("middle_name"));
                 teacher.setLastName(rs.getString("last_name"));
@@ -69,8 +70,7 @@ public class TeacherDB {
                 teacher.setUserName(rs.getString("user_name"));
                 teacher.setPassword(rs.getString("password"));
                 teachers.add(teacher);
-            }
-            
+            }  
             return teachers;
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());

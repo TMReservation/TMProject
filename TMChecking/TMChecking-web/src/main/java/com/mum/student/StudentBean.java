@@ -6,6 +6,7 @@
 package com.mum.student;
 
 import com.mum.setting.StudentDB;
+import com.mum.teacher.TeacherBean;
 import com.tm.entities.Student;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class StudentBean {
     private int currentStudentIndex;
     private ArrayList<SelectItem> selectProgram;
     private ArrayList<SelectItem> selectBatch;
+    TeacherBean teacherBean=new TeacherBean();
  
 
     public int getCurrentStudentIndex() {
@@ -87,7 +89,6 @@ public class StudentBean {
     }
     
      public String listBatch() {
-
         List<String> batchs = new ArrayList<String>();
         batchs.add("Feb 2014");
         batchs.add("June 2014");
@@ -95,22 +96,17 @@ public class StudentBean {
         batchs.add("Oct 2014");
         batchs.add("Feb 2015");
         batchs.add("June 2015");
-
         SelectItem batchItem = new SelectItem();
         selectBatch = new ArrayList<SelectItem>();
         for (int i = 0; i < batchs.size(); i++) {
-            batchItem = new SelectItem(i, batchs.get(i));
-         
+            batchItem = new SelectItem(i, batchs.get(i));         
             selectBatch.add(batchItem);
         }
            	
         return "";
     }
      
-     public String addAppointmentStudent(){
-         System.out.println("APPOINTMENT");
-         return "addAppointmentStudent";
-     }
+    
 
     
      
@@ -164,8 +160,15 @@ public class StudentBean {
     
  
     public String checkUpdateSetting(){
-        System.out.println("Inside update "+student.getId());
-        
         return "";
     }
+
+    public TeacherBean getTeacherBean() {
+        return teacherBean;
+    }
+
+    public void setTeacherBean(TeacherBean teacherBean) {
+        this.teacherBean = teacherBean;
+    }
+    
 }

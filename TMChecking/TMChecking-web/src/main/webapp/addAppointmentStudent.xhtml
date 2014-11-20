@@ -17,10 +17,22 @@
         </h:outputStylesheet>
         <rich:tabPanel switchType="client">
             <rich:tab header="Add Appointment">
-                <h:panelGrid columns="1">
+                <h:panelGrid columns="2">
+                    <h:outputText value="Select Date"></h:outputText>
                     <rich:calendar value="#{calendarModel.currentDate}" mode="ajax" boundaryDatesMode="scroll" dataModel="#{calendarModel}">
                         <f:ajax render="@this"/>
                     </rich:calendar>
+                    <h:outputText value="Select Teacher"></h:outputText>
+                   
+                    <h:selectOneMenu value="#{calendarModel.selectTeacherId}">
+                        <f:selectItem itemValue="#{null}" itemLabel="-- select one --" />
+                        <f:selectItems value="#{calendarModel.availableItems.entrySet()}" var="entry"
+                                       itemValue="#{entry.key}" itemLabel="#{entry.value}" />
+                    </h:selectOneMenu>
+
+                    <h:outputText value="Enabled" />
+                    <h:selectBooleanCheckbox value="#{calendarModel.enabledTM}"/>   
+                    <h:outputText></h:outputText>
                     <h:commandButton value="Add Schedule" action="#{calendarModel.addTMCheckingSchedule()}"/>
                 </h:panelGrid>
             </rich:tab>

@@ -66,15 +66,7 @@ public class Teacher implements Serializable {
         this.password = password;
     }
 
-    public ResultSet getRs() {
-        return rs;
-    }
-
-    public void setRs(ResultSet rs) {
-        this.rs = rs;
-    }
-    
-    ResultSet rs;
+  
 
     public Teacher() {
     }
@@ -83,10 +75,7 @@ public class Teacher implements Serializable {
         this.id = id;
     }
 
-    public Teacher(ResultSet rs) {
-        this.rs=rs;
-    }
-
+    
     public Integer getId() {
         return id;
     }
