@@ -11,66 +11,40 @@
             }
         </h:outputStylesheet>
 
-        <h:button value="BACK" outcome="home.xhtml" />
-        <h:commandButton value="Add Date" immediate="true"  action="#{teacherBean.addFreeTime()}"/>
+        <h:button value="BACK" outcome="home.xhtml" />        
+        <h:commandButton value="Show Stdudent Schedule"  action="#{showTeacherSchedule.addAppointmentStudent()}"/>
+        <br/>
         <h:outputText value="#{teacherBean.msg}" style="color:green"/>
         <rich:panel>            
             <f:facet name="header">
                 <h:outputText value="Teacher Info Entry"></h:outputText>
             </f:facet>
-            <h:panelGrid columns="3">
-                <h:outputText value="firstName:" />
-
-                <h:inputText label="firstName" id="firstname" required="true" validatorMessage="Invalid FirstName" value="#{teacherBean.teacher.firstName}">
-                    <f:validateLength minimum="2" />
-                </h:inputText>
-
-                <rich:message for="firstname" ajaxRendered="true" />
-
+            <h:panelGrid columns="2">
+                <h:outputText value="FirstName:" />
+                <h:inputText id="firstname" value="#{teacherBean.teacher.firstName1}"/>
 
                 <h:outputText value="LastName:" />
-                <h:inputText label="lastName" id="lastname" required="true" value="#{teacherBean.teacher.lastName}"   validatorMessage="Invalid Last Name">
-                    <f:validateLength minimum="3"/>
-
-                </h:inputText>
-                <rich:message for="lastname" ajaxRendered="true" />
-
-                <h:outputText value="email:" />
-                <h:inputText label="email" id="email"  value="#{teacherBean.teacher.email}"  validatorMessage="Invalid email">
-                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
-                </h:inputText>
-                <rich:message for="email" ajaxRendered="true" />
+                <h:inputText id="lastname" value="#{teacherBean.teacher.lastName}"/>
+                <h:outputText value="Email:" />
+                <h:inputText id="email"  value="#{teacherBean.teacher.emailID}" />
 
                 <h:outputText value="contactNumber:" />
-                <h:inputText value="#{teacherBean.teacher.contactNumber}">
+                <h:inputText id="contact" value="#{teacherBean.teacher.contact}"/>
 
-                </h:inputText>
-                <rich:message />
-
-                <h:outputText value="userName:" />
-                <h:inputText label="userName" id="username" required="true"  validatorMessage="Invalid Username"    value="#{teacherBean.teacher.userName}">
-                    <f:validateLength minimum="2"/>
-                </h:inputText>
-                <rich:message for="username" ajaxRendered="true"/>
-
-                <h:outputText value="password:" />
-
-                <h:inputSecret label="password" id="password" required="true" value="#{teacherBean.teacher.password}" validatorMessage="Invalid password(at least 4 characters needed)">
-                    <f:validateLength minimum="4" maximum="20"  />
-                </h:inputSecret>
-                <rich:message ajaxRendered="true" for="password"/>
+                <h:outputText value="UserName:" />
+                <h:inputText id="username"  value="#{teacherBean.teacher.usernameTeacher}"/>
 
 
-                <h:outputText value=""/>
+                <h:outputText value="Password:" />
+                <h:inputSecret id="password" value="#{teacherBean.teacher.passwordTeacher}"/>
+
+
+
+                <h:outputText value="" />
                 <h:commandButton value="ADD" action="#{teacherBean.addTeacherInformation()}"/>
-
-
-
-
-
-
-
             </h:panelGrid>
+            
+            
             <a4j:status onstart="#{rich:component('statPane')}.show()" onstop="#{rich:component('statPane')}.hide()" />
             <rich:dataTable value="#{teacherBean.teachers}" var="teacher" iterationStatusVar="it" id="table" rows="15">
                 <rich:column>
@@ -113,36 +87,37 @@
             </rich:dataTable>
         </rich:panel>
         <a4j:jsFunction name="remove" action="#{teacherBean.remove}" render="table" execute="@this"
-            oncomplete="#{rich:component('confirmPane')}.hide();" />
- 
+                        oncomplete="#{rich:component('confirmPane')}.hide();" />
+
         <rich:popupPanel id="confirmPane" autosized="true">
             Are you sure you want to delete the row?
-            <a4j:commandButton value="Cancel" onclick="#{rich:component('confirmPane')}.hide(); return false;" />
-            <a4j:commandButton value="Delete" onclick="remove(); return false;" />
+            <a4j:commandButton value="Cancel" onclick="#{rich:component('confirmPane')}.hide();
+                    return false;" />
+            <a4j:commandButton value="Delete" onclick="remove();
+                    return false;" />
         </rich:popupPanel>
-        
-        
+
+
         <rich:popupPanel header="Edit Panel" id="editTeacherPane" domElementAttachment="parent" width="400" height="170">
             <h:panelGrid columns="2" id="editGrid">
                 <h:outputText value="teacherName:" />
-                <h:inputText value="#{teacherBean.teacher.firstName}# {teacherBean.teacher.lastName}" id="nameid" >
-                </h:inputText>
-                
+                <h:inputText value="#{teacherBean.teacher.firstName}" id="nameid"/>
+
                 <h:outputText value="email" />
                 <h:inputText value="#{teacherBean.teacher.email}" id="emailid" >
                 </h:inputText>
                 <h:outputText value="contactNumber" />
                 <h:inputText value="#{teacherBean.teacher.contactNumber}" id="contactid" >
                 </h:inputText>
-                
+
                 <h:outputText value="userName" />
                 <h:inputText value="#{teacherBean.teacher.userName}" id="usernameid" >
                 </h:inputText>
-                
+
                 <h:outputText value="password" />
                 <h:inputText value="#{teacherBean.teacher.password}" id="passwordid" >
                 </h:inputText>
-                
+
 
             </h:panelGrid>
             <a4j:commandButton value="Update" action="#{teacherBean.updateTeacher()}" render="table" execute="editPane"

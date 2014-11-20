@@ -124,6 +124,9 @@ public class CalendarModel implements CalendarDataModel {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         int studentId = (int) session.getAttribute("userId");
         boolean checkTMStatus = teacherDB.saveTMChecking(currentDate, selectTeacherId, studentId, enable, pending);
+        tmChecking = new ArrayList<>();
+        tmChecking = teacherDB.getTMCheckingList(studentId);
+        
         if (checkTMStatus == true) {
             selectTeacherId = "";
         } else {

@@ -24,10 +24,40 @@ public class Student  {
     private String username;
     private String password;
     private String batch;
-    ResultSet rs;
     private String tempBatch;
     private String tempProgram;
     private String fullName;
+    private String studentId;
+    private String emailID;
+    private String usernameStudent;
+    private String passwordStudent;
+
+    public String getUsernameStudent() {
+        return usernameStudent;
+    }
+
+    public void setUsernameStudent(String usernameStudent) {
+        this.usernameStudent = usernameStudent;
+    }
+
+    public String getPasswordStudent() {
+        return passwordStudent;
+    }
+
+    public void setPasswordStudent(String passwordStudent) {
+        this.passwordStudent = passwordStudent;
+    }
+    
+    
+
+    public String getEmailID() {
+        return emailID;
+    }
+
+    public void setEmailID(String emailID) {
+        this.emailID = emailID;
+    }
+    
     
     public Student() {
     }
@@ -35,9 +65,15 @@ public class Student  {
         this.id = id;
     }
 
-    public Student(ResultSet rs) {
-        this.rs=rs;
+    public String getStudentId() {
+        return studentId;
     }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
+   
 
     public Integer getId() {
         return id;

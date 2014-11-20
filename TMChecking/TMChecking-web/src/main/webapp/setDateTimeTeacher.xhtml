@@ -4,44 +4,52 @@
 
     <ui:define name="content">
 
-
-        <h:outputStylesheet>
-            .bdc {
-            background-color: gray;
-            }
-
-            .wdc {
-            font-weight: bold;
-            font-style: italic;
-            }
-        </h:outputStylesheet>
-        <rich:tabPanel switchType="client">
-            <rich:tab header="Add Appointment">
-
-                <rich:calendar value="#{calendarModel.currentDate}" mode="ajax" boundaryDatesMode="scroll" dataModel="#{calendarModel}">
-                    <f:ajax render="@this"/>
-                </rich:calendar>
-                <h:commandButton value="Add Schedule" action="#{calendarModel.addTMCheckingSchedule()}"/>
-            </rich:tab>
-
-
-            <rich:tab header="Student Appointment List">
-                <rich:dataTable value="#{teacherBean.teachers}" var="teacher" iterationStatusVar="it" id="table" rows="15">
+        <rich:accordion switchType="client">
+            <rich:accordionItem header="Overview:">
+                <rich:dataTable value="#{showTeacherSchedule.checkingList}" var="tmChecking" iterationStatusVar="it" id="table" rows="15">
                     <rich:column>
                         <f:facet name="header">S. No.</f:facet>
                             #{it.index+1}
                     </rich:column>
                     <rich:column>
-                        <f:facet name="header">First Name</f:facet>
-                        <h:outputText value="#{teacher.firstName}" />
+                        <f:facet name="header">StudentName</f:facet>
+                        <h:outputText value="#{tmChecking.studentId}" />
                     </rich:column>
                     <rich:column>
-                        <f:facet name="header">Last Name</f:facet>
-                        <h:outputText value="#{teacher.lastName}" />
+                        <f:facet name="header">TM Status</f:facet>
+                        <h:outputText value="#{tmChecking.checked}" />
+                    </rich:column>
+                    <rich:column>
+                        <f:facet name="header">Date</f:facet>
+                        <h:outputText value="#{tmChecking.checkTime}" />
+                    </rich:column>
+                      <rich:column>
+                        <f:facet name="header">Status</f:facet>
+                        <h:outputText value="#{tmChecking.pending==0?'Pending':'Approved'}" />
                     </rich:column>
 
+                    <rich:column >
+                        <f:facet name="header">Action</f:facet>
+                        <h:graphicImage rendered="#{tmChecking.checked==0}" value="resources/images/checked.png" alt="edit" width="20" height="18"/>
+                        <h:graphicImage rendered="#{tmChecking.checked==1}" value="resources/images/unchecked.png" alt="edit" width="20" height="18"/>
+                    </rich:column>
                 </rich:dataTable>
-            </rich:tab>
-        </rich:tabPanel>
+            </rich:accordionItem>
+            <rich:accordionItem header="History">
+                <p>We are working hard o which will have full integration. That is not all though, here
+                    is a summary of updates and features:</p>
+                <ul>
+                    <li>Redesigned modular repository and build system.</li>
+                    <li>Simplified Component Development Kit with annotations, faces-config extensions, advanced templates
+                        support and more..</li>
+                    <li>Ajax framework improvements extending the JSF 2 specification.</li>
+                    <li>Component review for consistency, usability, and redesign following semantic HTML principles where
+                        possible.</li>
+                    <li>Both server-side and client-side performance optimization.</li>
+                    <li>Strict code clean-up and review.</li>
+                </ul>
+            </rich:accordionItem>
+        </rich:accordion>
+
     </ui:define>   
 </ui:composition>

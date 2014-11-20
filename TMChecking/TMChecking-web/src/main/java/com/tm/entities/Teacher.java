@@ -24,6 +24,57 @@ public class Teacher implements Serializable {
     private String userName;
     private String password;
     private String fullName;
+    private String firstName1;
+    private String emailID;
+    private int contact;
+    private String usernameTeacher;
+    private String passwordTeacher;
+
+    public String getUsernameTeacher() {
+        return usernameTeacher;
+    }
+
+    public void setUsernameTeacher(String usernameTeacher) {
+        this.usernameTeacher = usernameTeacher;
+    }
+
+    public String getPasswordTeacher() {
+        return passwordTeacher;
+    }
+
+    public void setPasswordTeacher(String passwordTeacher) {
+        this.passwordTeacher = passwordTeacher;
+    }
+    
+    
+    
+    public int getContact() {
+        return contact;
+    }
+
+    public void setContact(int contact) {
+        this.contact = contact;
+    }
+            
+    public String getEmailID() {
+        return emailID;
+    }
+
+    public void setEmailID(String emailID) {
+        this.emailID = emailID;
+    }
+    
+
+    public String getFirstName1() {
+        return firstName1;
+    }
+
+    public void setFirstName1(String firstName1) {
+        this.firstName1 = firstName1;
+    }
+    
+  
+    
 
     public String getFullName() {
         return "getFirstName()+getMiddleName()+getLastName()";

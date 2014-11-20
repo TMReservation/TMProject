@@ -44,8 +44,8 @@ public class StudentDB {
     public boolean insertStudent(Student student) {
         try {
 
-            System.out.println("INSERT HERE>>");
-            String sql = "INSERT INTO student VALUES(default,'" + student.getFirstName() + "','" + student.getMiddleName() + "','" + student.getLastName() + "','" + student.getEmail() + "','" + 0 + "','" + student.getProgram() + "','" + student.getContactnumber() + "','" + student.getUsername() + "','" + student.getPassword() + "','" + student.getBatch() + "')";
+            System.out.println("INSERT HERE>>"+student.getEmail());
+            String sql = "INSERT INTO student VALUES(default,'"+student.getFirstName()+ "','"+student.getMiddleName() + "','"+student.getLastName()+"','"+student.getEmailID()+"','" + 0 + "','"+student.getProgram()+ "','"+student.getContactnumber()+"','"+student.getUsernameStudent()+"','"+student.getPasswordStudent()+"','"+student.getBatch()+"')";
             System.out.println("AFTER SQL");
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
@@ -59,8 +59,7 @@ public class StudentDB {
     public List<Student> getStudentList() {
         try {
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM student");
-            System.out.println("RS >>" + rs);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM student order by id desc");
             List<Student> students = new ArrayList<>();
             while (rs.next()) {
                 String lastName = rs.getString("first_name");

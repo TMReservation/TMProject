@@ -8,6 +8,7 @@ package com.mum.student;
 import com.mum.setting.StudentDB;
 import com.mum.teacher.TeacherBean;
 import com.tm.entities.Student;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -20,7 +21,7 @@ import javax.faces.model.SelectItem;
  */
 @ManagedBean(name = "studentBean")
 @SessionScoped
-public class StudentBean {
+public class StudentBean implements Serializable{
     
     private Student student=new Student();
     List<Student> students=new ArrayList<>();
@@ -41,10 +42,11 @@ public class StudentBean {
     }
       
     public void addStudentInformation() {
-        System.out.println("INSERT Student");
-        System.out.println("SELECT VALUE " + student.getTempBatch());
+        System.out.println("EMAIL "+student.getEmailID());
+          System.out.println("EMAIL "+student.getFirstName());
         boolean check = studentDB.insertStudent(student);
-
+        students=new ArrayList<>();
+        students=studentDB.getStudentList();
         if (check) {
             clear();
             System.out.println(msg);

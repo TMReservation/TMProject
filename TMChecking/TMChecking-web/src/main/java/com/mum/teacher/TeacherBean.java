@@ -7,30 +7,28 @@ package com.mum.teacher;
 
 import com.mum.setting.TeacherDB;
 import com.tm.entities.Teacher;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.model.SelectItem;
-
 
 /**
  *
  * @author sunil
  */
-@ManagedBean(name = "teacherBean")
+@ManagedBean(name ="teacherBean")
 @SessionScoped
-public class TeacherBean {
-    List<Teacher> teachers=new ArrayList<>();
-    Teacher teacher=new Teacher();
+public class TeacherBean implements Serializable{
+
+    List<Teacher> teachers = new ArrayList<>();
+    Teacher teacher = new Teacher();
     private int currentTeacherIndex;
-    TeacherDB teacherDB=new TeacherDB();
-    private String msg="";
+    TeacherDB teacherDB = new TeacherDB();
+    private String msg = "";
     private ArrayList<SelectItem> selectTeacherList;
     private int teacherSelectId;
-    
-    
 
     public int getCurrentTeacherIndex() {
         return currentTeacherIndex;
@@ -39,12 +37,12 @@ public class TeacherBean {
     public void setCurrentTeacherIndex(int currentTeacherIndex) {
         this.currentTeacherIndex = currentTeacherIndex;
     }
-    public String checkUpdateSetting(){
-        System.out.println("Inside update "+teacher.getId());
+
+    public String checkUpdateSetting() {
+        System.out.println("Inside update " + teacher.getId());
 
         return "";
     }
-    
 
     public TeacherDB getTeacherDB() {
         return teacherDB;
@@ -54,8 +52,6 @@ public class TeacherBean {
         this.teacherDB = teacherDB;
     }
 
-    
-    
     public String getMsg() {
         return msg;
     }
@@ -69,16 +65,19 @@ public class TeacherBean {
         return "setting";
     }
 
-    public void addTeacherInformation() {
-        System.out.println("INSERT TEACHER");
-        TeacherDB teacherDB = new TeacherDB();
+    public void addTeacherInformation() { 
+        System.out.println("TEACHER NAME "+teacher.getFirstName1());
+        System.out.println("First Name is "+teacher.getEmail());
         boolean checkSubmit = teacherDB.insertTeacher(teacher);
         if (checkSubmit) {
             msg = "Data saved successfully";
+            teachers = new ArrayList<>();
+            teachers = teacherDB.getTeacherList();
 
         } else {
             msg = "This entry has some error";
         }
+
         setTeacherInformation();
 
     }
@@ -94,32 +93,19 @@ public class TeacherBean {
 
     public String addTeacher() {
         teachers = new ArrayList<>();
-        teachers = teacherDB.getTeacherList();        
+        teachers = teacherDB.getTeacherList();
+        teacher=new Teacher();
         msg = "";
         return "addTeacher";
     }
-    
-//    public void teacherSelectList(){
-//        SelectItem teacherItem = new SelectItem();
-//        selectTeacherList = new ArrayList<SelectItem>();
-//        addTeacher();
-//        System.out.println("TEACHER SELECT LIST");
-//        for (Teacher t:teachers) {
-//            teacherItem = new SelectItem(t.getId(),t.getFirstName()+t.getLastName());         
-//            selectTeacherList.add(teacherItem);
-//        }
-//        System.out.println("SIZE IS >> "+selectTeacherList.size());
-//    }
-   
-    
-    public void teacherTest(){
-        System.out.println("ID IS "+teacherSelectId);
-    }
-    
-    public void updateTeacher(){
-        System.out.println("Teacher object "+teacher.getFirstName());
+
+    public void teacherTest() {
+        System.out.println("ID IS " + teacherSelectId);
     }
 
+    public void updateTeacher() {
+        System.out.println("Teacher object " + teacher.getFirstName());
+    }
 
     public String addFreeTime() {
         System.out.println("IMMEDIATE TRUE");
@@ -157,6 +143,5 @@ public class TeacherBean {
     public void setTeacherSelectId(int teacherSelectId) {
         this.teacherSelectId = teacherSelectId;
     }
-    
 
 }
