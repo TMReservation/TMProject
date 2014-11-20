@@ -35,9 +35,9 @@
                     <f:setPropertyActionListener target="#{settingBean.setting}" value="#{setting}" />
                 </a4j:commandLink>
                 
-                <a4j:commandLink styleClass="no-decor" render="editGrid" execute="@this"
+                <a4j:commandLink styleClass="no-decor" render="editGrid" execute="@none"
                                  oncomplete="#{rich:component('editPane')}.show()">
-                    <h:graphicImage value="resources/images/delete.png" alt="edit" width="20" height="18"/>
+                    <h:graphicImage value="resources/images/delete.png" alt="delete" width="20" height="18"/>
                     <a4j:param value="#{it.index}" assignTo="#{settingBean.currentSettingIndex}" />
                     <f:setPropertyActionListener target="#{settingBean.setting}" value="#{setting}" />
                 </a4j:commandLink>

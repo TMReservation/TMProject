@@ -107,6 +107,10 @@ public class TeacherBean {
         msg = "";
         return "addTeacher";
     }
+    
+    public void updateTeacher(){
+        System.out.println("Teacher object "+teacher.getFirstName());
+    }
 
 
     public String addFreeTime() {
@@ -129,5 +133,6 @@ public class TeacherBean {
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
+    
 
 }

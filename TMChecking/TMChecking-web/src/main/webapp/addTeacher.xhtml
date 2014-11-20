@@ -112,12 +112,20 @@
                 </rich:column>
             </rich:dataTable>
         </rich:panel>
+        <a4j:jsFunction name="remove" action="#{teacherBean.remove}" render="table" execute="@this"
+            oncomplete="#{rich:component('confirmPane')}.hide();" />
+ 
+        <rich:popupPanel id="confirmPane" autosized="true">
+            Are you sure you want to delete the row?
+            <a4j:commandButton value="Cancel" onclick="#{rich:component('confirmPane')}.hide(); return false;" />
+            <a4j:commandButton value="Delete" onclick="remove(); return false;" />
+        </rich:popupPanel>
         
         
         <rich:popupPanel header="Edit Panel" id="editTeacherPane" domElementAttachment="parent" width="400" height="170">
             <h:panelGrid columns="2" id="editGrid">
                 <h:outputText value="teacherName:" />
-                <h:inputText value="#{teacherBean.teacher.fullName}" id="nameid" >
+                <h:inputText value="#{teacherBean.teacher.firstName}# {teacherBean.teacher.lastName}" id="nameid" >
                 </h:inputText>
                 
                 <h:outputText value="email" />
@@ -137,7 +145,7 @@
                 
 
             </h:panelGrid>
-            <a4j:commandButton value="Update" action="#{settingBean.checkUpdateSetting()}" render="table" execute="editPane"
+            <a4j:commandButton value="Update" action="#{teacherBean.updateTeacher()}" render="table" execute="editPane"
                                oncomplete="if (#{facesContext.maximumSeverity==null}) {#{rich:component('editPane')}.hide();}" />
             <a4j:commandButton value="Cancel" onclick="#{rich:component('editPane')}.hide();
                     return false;" />
